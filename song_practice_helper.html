@@ -565,23 +565,29 @@
         <div class="control-label" style="font-size: 1.1rem; color: #a5b4fc; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
             <span>🎥 聲樂老師真人歌聲教唱與示範影片 (開啟外部視窗)</span>
         </div>
-        <div style="font-size: 0.95rem; color: var(--text-muted); max-width: 650px; line-height: 1.6;">
-            本機網頁受瀏覽器安全限制無法直接播放影片。我們為您提供 <b>YouTube</b> 與 <b>Bilibili (B站，無網路限制)</b> 雙重學習通道。請點擊下方按鈕在新視窗中觀看真人歌唱教學：
+        <div style="font-size: 0.95rem; color: var(--text-muted); max-width: 700px; line-height: 1.6;">
+            本機網頁受瀏覽器安全限制無法直接播放影片。我們為您提供 <b>YouTube</b>、<b>西瓜視頻 (免登入流暢播放)</b>、<b>網易雲音樂 (免登入聽歌)</b> 等多重學習通道。請點擊下方按鈕在新視窗中觀看真人唱歌教學：
         </div>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem;">
             <!-- YouTube Button -->
-            <a id="btn-video-link" href="" target="_blank" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
-                <svg width="18" height="18" viewBox="0 0 24 24" style="fill: currentColor; transform: translateY(-1px);">
-                    <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.524 3.545 12 3.545 12 3.545s-7.525 0-9.387.51A3.003 3.003 0 0 0 .502 6.163C0 8.04 0 12 0 12s0 3.96.502 5.837a3.003 3.003 0 0 0 2.11 2.108c1.862.51 9.387.51 9.387.51s7.525 0 9.387-.51a3.002 3.002 0 0 0 2.11-2.108c.502-1.877.502-5.837.502-5.837s0-3.96-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
+            <a id="btn-video-link" href="" target="_blank" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.4rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor; transform: translateY(-1px);"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.524 3.545 12 3.545 12 3.545s-7.525 0-9.387.51A3.003 3.003 0 0 0 .502 6.163C0 8.04 0 12 0 12s0 3.96.502 5.837a3.003 3.003 0 0 0 2.11 2.108c1.862.51 9.387.51 9.387.51s7.525 0 9.387-.51a3.002 3.002 0 0 0 2.11-2.108c.502-1.877.502-5.837.502-5.837s0-3.96-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 <span id="video-link-text">YouTube 影片</span>
             </a>
+            <!-- Xigua Video Button -->
+            <a id="btn-xigua-link" href="" target="_blank" style="background: linear-gradient(135deg, #ff4c4c 0%, #e60000 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.4rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(230, 0, 0, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor; transform: translateY(-1px);"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9 14.5c-3.04 0-5.5-2.46-5.5-5.5s2.46-5.5 5.5-5.5 5.5 2.46 5.5 5.5-2.46 5.5-5.5 5.5zm2.5-5.5l-4-2.5v5l4-2.5z"/></svg>
+                <span id="xigua-link-text">西瓜視頻 (免登入播放)</span>
+            </a>
+            <!-- NetEase Cloud Music Button -->
+            <a id="btn-netease-link" href="" target="_blank" style="background: linear-gradient(135deg, #e60026 0%, #a80018 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.4rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(168, 0, 24, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor; transform: translateY(-1px);"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V11c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5.5z"/></svg>
+                <span id="netease-link-text">網易雲音樂教唱</span>
+            </a>
             <!-- Bilibili Button -->
-            <a id="btn-bili-link" href="" target="_blank" style="background: linear-gradient(135deg, #fb7299 0%, #fc5c88 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(251, 114, 153, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
-                <svg width="18" height="18" viewBox="0 0 24 24" style="fill: currentColor; transform: translateY(-1px);">
-                    <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zM7.5 10c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm9 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/>
-                </svg>
-                <span id="bili-link-text">Bilibili (B站) 搜尋</span>
+            <a id="btn-bili-link" href="" target="_blank" style="background: linear-gradient(135deg, #fb7299 0%, #fc5c88 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.4rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(251, 114, 153, 0.2); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor; transform: translateY(-1px);"><path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zM7.5 10c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5zm9 0c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></svg>
+                <span id="bili-link-text">Bilibili (B站)</span>
             </a>
         </div>
     </div>
