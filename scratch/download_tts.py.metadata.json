@@ -1,4 +1,4 @@
 {
-  "summary": "A Python script to download high-quality Italian and English pronunciation audio files for the lines of the three songs from Google Translate TTS.",
-  "updatedAt": "2026-07-26T15:30:57.467051300Z"
+  "summary": "A fixed version of download_tts.py that avoids Unicode encoding print errors on Windows cmd by stripping non-ASCII characters in console messages, and skips already-downloaded files.",
+  "updatedAt": "2026-07-26T15:31:41.056218500Z"
 }

@@ -49,12 +49,12 @@ songs_data = {
     "sl": {
         "lang": "it",  # Italian!
         "lines": [
-            "Sul mare luccica l’astro d’argento.",
-            "Placida è l’onda, prospero è il vento.",
-            "Venite all’agile barchetta mia,",
+            "Sul mare luccica l'astro d'argento.",
+            "Placida è l'onda, prospero è il vento.",
+            "Venite all'agile barchetta mia,",
             "Santa Lucia! Santa Lucia!",
             "Con questo zeffiro così soave,",
-            "Oh, com’è bello star sulla nave!",
+            "Oh, com'è bello star sulla nave!",
             "Su passeggeri, venite via!",
             "Santa Lucia! Santa Lucia!"
         ]
@@ -67,12 +67,19 @@ for prefix, info in songs_data.items():
         filename = f"{prefix}_{i+1}.mp3"
         filepath = os.path.join(dest_dir, filename)
         
+        # If already exists, skip
+        if os.path.exists(filepath):
+            print(f"Skipping {filename} (already exists)")
+            continue
+            
         # Clean text a bit for the TTS engine
         clean_line = line.replace("’", "'").replace("‘", "'")
         encoded_text = urllib.parse.quote(clean_line)
         url = f"https://translate.google.com/translate_tts?ie=UTF-8&q={encoded_text}&tl={lang}&client=tw-ob"
         
-        print(f"Downloading {filename} for line: '{line}'...")
+        # Safe print to avoid Unicode console errors
+        safe_print_text = clean_line.encode('ascii', 'ignore').decode('ascii')
+        print(f"Downloading {filename} for line: '{safe_print_text}'...")
         try:
             req = urllib.request.Request(url, headers=headers)
             with urllib.request.urlopen(req) as response:
