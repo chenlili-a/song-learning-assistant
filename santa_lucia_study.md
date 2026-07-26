@@ -1,5 +1,9 @@
 # Santa Lucia (桑塔露琪亞) 歌詞與發音學習單
 
+### 💻 網頁互動式歌唱學習助手 (極力推薦)
+* **[點此開啟網頁版互動學習助手 (HTML)](file:///C:/Users/Chen/.gemini/antigravity/brain/ad2b16ce-4b04-4380-84e8-bf394ff8a5e4/song_practice_helper.html)**
+* *說明：這是專為這三首歌設計的網頁學習器，能高亮顯示當前歌詞，支援點選單句發音、自訂跟讀停頓時間，並包含真實義大利文發音！*
+
 ### 🎧 慢速朗讀語音教學
 * **[點此播放慢速朗讀音檔 (WAV)](file:///C:/Users/Chen/.gemini/antigravity/brain/ad2b16ce-4b04-4380-84e8-bf394ff8a5e4/santa_lucia_pronunciation.wav)**
 * *說明：點選上方連結播放。音檔中每唸完一句，會預留 3.5 秒的空白時間供您跟著大聲唸出，以練習發音與語音節奏。*
