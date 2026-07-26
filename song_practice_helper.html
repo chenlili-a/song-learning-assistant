@@ -17,6 +17,9 @@
             --primary: #6366f1;
             --primary-hover: #4f46e5;
             --active-glow: 0 0 15px rgba(99, 102, 241, 0.4);
+            --melody-color: #10b981;
+            --melody-hover: #059669;
+            --melody-glow: 0 0 15px rgba(16, 185, 129, 0.3);
         }
 
         * {
@@ -27,7 +30,7 @@
 
         body {
             font-family: 'Outfit', 'Noto Sans TC', sans-serif;
-            background: radial-gradient(circle at 50% 50%, #151726 0%, #08090d 100%);
+            background: radial-gradient(circle at 50% 50%, #121424 0%, #06070a 100%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -40,26 +43,26 @@
         /* Glassmorphism Wrapper */
         .app-container {
             width: 100%;
-            max-width: 960px;
-            background: rgba(18, 20, 32, 0.65);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            max-width: 980px;
+            background: rgba(15, 17, 28, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), var(--accent-glow);
+            border-radius: 28px;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6), var(--accent-glow);
             padding: 2.5rem;
             transition: all 0.4s ease;
         }
 
         header {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 100%);
+            background: linear-gradient(135deg, #c7d2fe 0%, #818cf8 50%, #6366f1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
@@ -68,6 +71,7 @@
         .subtitle {
             color: var(--text-muted);
             font-size: 1rem;
+            letter-spacing: 1px;
         }
 
         /* Song Selector Tabs */
@@ -76,24 +80,24 @@
             gap: 1rem;
             margin-bottom: 2rem;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1rem;
+            padding-bottom: 1.2rem;
             justify-content: center;
         }
 
         .tab-btn {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
             color: var(--text-muted);
-            padding: 0.8rem 1.6rem;
-            border-radius: 12px;
+            padding: 0.8rem 1.8rem;
+            border-radius: 14px;
             cursor: pointer;
             font-weight: 500;
-            font-size: 1rem;
+            font-size: 1.05rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .tab-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.06);
             color: var(--text-main);
             transform: translateY(-2px);
         }
@@ -102,16 +106,22 @@
             background: var(--primary);
             color: #fff;
             border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.35);
         }
 
         /* Dashboard & Controls */
         .control-panel {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.015);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.5rem;
+            border-radius: 20px;
+            padding: 1.8rem;
             margin-bottom: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .panel-row {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
@@ -120,20 +130,20 @@
         }
 
         .desc-section {
-            flex: 1 1 300px;
+            flex: 1 1 350px;
         }
 
         .song-title-display {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
             color: #fff;
         }
 
         .song-desc-display {
             color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .action-section {
@@ -143,17 +153,55 @@
             align-items: center;
         }
 
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .control-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Toggle Button Group */
+        .mode-toggle {
+            display: flex;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .mode-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .mode-btn.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
         .btn-play-all {
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
             color: #fff;
             border: none;
             padding: 0.9rem 1.8rem;
-            border-radius: 12px;
+            border-radius: 14px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
             transition: all 0.3s ease;
         }
@@ -194,7 +242,7 @@
 
         input[type="range"] {
             -webkit-appearance: none;
-            width: 160px;
+            width: 150px;
             height: 6px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 3px;
@@ -218,11 +266,10 @@
         /* Practice Status Bar */
         .status-bar {
             width: 100%;
-            margin-top: 1rem;
-            padding: 0.8rem 1.2rem;
+            padding: 0.9rem 1.4rem;
             background: rgba(99, 102, 241, 0.05);
             border-left: 4px solid var(--primary);
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 10px 10px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -239,26 +286,25 @@
         }
 
         .progress-ring-container {
-            font-size: 0.9rem;
-            color: var(--text-muted);
+            font-weight: 600;
+            color: #a5b4fc;
         }
 
         /* Lyrics Sheet */
         .lyrics-container {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 1.2rem;
         }
 
         .lyric-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.015);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 1.2rem 1.5rem;
-            cursor: pointer;
+            border-radius: 18px;
+            padding: 1.3rem 1.6rem;
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1.5rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -276,13 +322,13 @@
         }
 
         .lyric-card:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(99, 102, 241, 0.3);
-            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.035);
+            border-color: rgba(99, 102, 241, 0.25);
+            transform: translateX(6px);
         }
 
         .lyric-card.active {
-            background: rgba(99, 102, 241, 0.06);
+            background: rgba(99, 102, 241, 0.05);
             border-color: var(--primary);
             box-shadow: var(--active-glow);
         }
@@ -291,8 +337,18 @@
             background: var(--primary);
         }
 
+        .lyric-card.active-melody {
+            background: rgba(16, 185, 129, 0.05);
+            border-color: var(--melody-color);
+            box-shadow: var(--melody-glow);
+        }
+
+        .lyric-card.active-melody::before {
+            background: var(--melody-color);
+        }
+
         .lyric-num {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: var(--text-muted);
             min-width: 24px;
@@ -303,29 +359,13 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 0.4rem;
         }
 
         .lyric-original {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .btn-speak-icon {
-            opacity: 0.3;
-            transition: opacity 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .lyric-card:hover .btn-speak-icon,
-        .lyric-card.active .btn-speak-icon {
-            opacity: 1;
-            color: #818cf8;
         }
 
         .lyric-translation {
@@ -344,7 +384,7 @@
         .pho-ipa {
             color: var(--text-muted);
             background: rgba(255, 255, 255, 0.03);
-            padding: 0.1rem 0.5rem;
+            padding: 0.15rem 0.6rem;
             border-radius: 4px;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -352,12 +392,52 @@
         .pho-pinyin {
             color: #fca5a5;
             background: rgba(239, 68, 68, 0.04);
-            padding: 0.1rem 0.5rem;
+            padding: 0.15rem 0.6rem;
             border-radius: 4px;
             border: 1px solid rgba(239, 68, 68, 0.08);
         }
 
-        /* Repeat Status Animation Overlay */
+        /* Speech and Melody Buttons inside Cards */
+        .card-controls {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .card-btn {
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;
+        }
+
+        .card-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+        }
+
+        .card-btn.btn-voice:hover,
+        .lyric-card.active .card-btn.btn-voice {
+            border-color: var(--primary);
+            color: #fff;
+            background: rgba(99, 102, 241, 0.2);
+        }
+
+        .card-btn.btn-melody:hover,
+        .lyric-card.active-melody .card-btn.btn-melody {
+            border-color: var(--melody-color);
+            color: #fff;
+            background: rgba(16, 185, 129, 0.2);
+        }
+
+        /* Repeating / Count Down Overlay inside Cards */
         .repeat-overlay {
             position: absolute;
             right: 1.5rem;
@@ -366,9 +446,9 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            background: rgba(239, 68, 68, 0.1);
+            background: rgba(239, 68, 68, 0.08);
             color: #f87171;
-            border: 1px solid rgba(239, 68, 68, 0.2);
+            border: 1px solid rgba(239, 68, 68, 0.15);
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
             font-size: 0.85rem;
@@ -426,23 +506,36 @@
 
     <!-- Song Details & Controls -->
     <div class="control-panel">
-        <div class="desc-section">
-            <div class="song-title-display" id="song-title">Amazing Grace (奇異恩典)</div>
-            <div class="song-desc-display" id="song-desc">英國經典聖詩，感人至深的救贖與恩典之歌。</div>
-        </div>
-        <div class="action-section">
-            <!-- Pause slider -->
-            <div class="slider-container">
-                <div class="slider-label">跟讀停頓時間: <span id="pause-val">3.5秒</span></div>
-                <input type="range" id="pause-slider" min="2" max="8" step="0.5" value="3.5" oninput="updatePauseVal(this.value)">
+        <div class="panel-row">
+            <div class="desc-section">
+                <div class="song-title-display" id="song-title">Amazing Grace (奇異恩典)</div>
+                <div class="song-desc-display" id="song-desc">英國經典聖詩，感人至深的救贖與恩典之歌。</div>
             </div>
-            <!-- Play All / Practice button -->
-            <button class="btn-play-all" id="btn-practice" onclick="togglePracticeMode()">
-                <svg width="20" height="20" viewBox="0 0 24 24" id="play-icon">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-                <span id="btn-text">開始連唱練習</span>
-            </button>
+            <div class="action-section">
+                <!-- Practice Mode Toggle -->
+                <div class="control-group">
+                    <div class="control-label">練習內容模式</div>
+                    <div class="mode-toggle">
+                        <button class="mode-btn active" id="mode-voice" onclick="setPracticeMode('voice')">朗讀發音</button>
+                        <button class="mode-btn" id="mode-melody" onclick="setPracticeMode('melody')">旋律歌唱</button>
+                        <button class="mode-btn" id="mode-both" onclick="setPracticeMode('both')">朗讀+旋律</button>
+                    </div>
+                </div>
+
+                <!-- Pause slider -->
+                <div class="slider-container">
+                    <div class="slider-label">跟讀停頓時間: <span id="pause-val">3.5秒</span></div>
+                    <input type="range" id="pause-slider" min="2" max="8" step="0.5" value="3.5" oninput="updatePauseVal(this.value)">
+                </div>
+
+                <!-- Play All / Practice button -->
+                <button class="btn-play-all" id="btn-practice" onclick="togglePracticeMode()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" id="play-icon">
+                        <path d="M8 5v14l11-7z"/>
+                    </svg>
+                    <span id="btn-text">開始連唱練習</span>
+                </button>
+            </div>
         </div>
 
         <!-- Status display -->
@@ -459,63 +552,408 @@
 </div>
 
 <footer>
-    本系統音檔儲存於本地 <span style="font-family: monospace;">audio/</span> 資料夾，配合網頁點選可立即播放。
+    本系統支援語音與 Web Audio 旋律合成教學。您可以點擊任何單句進行單讀或聽取鋼琴旋律。
 </footer>
 
-<!-- Single HTML5 Audio Element for Playback -->
+<!-- Single HTML5 Audio Element for Pronunciation Playback -->
 <audio id="audio-player"></audio>
 
 <script>
-    // Song database
+    // Song database (containing bilingual text and MIDI notes for synthesis)
     const songs = {
         ag: {
             title: "Amazing Grace (奇異恩典)",
             desc: "詞：約翰·牛頓 (John Newton) | 英國經典聖詩，感人至深的救贖與恩典之歌。",
+            tempo: 85,
             lines: [
-                { text: "Amazing grace! How sweet the sound", translation: "奇異恩典！何等甘甜的歌聲", ipa: "[əˈmeɪzɪŋ ɡreɪs / haʊ swiːt ðə saʊnd]", pinyin: "阿妹晶 葛雷斯！豪 絲威特 德 桑德", audio: "audio/ag_1.mp3" },
-                { text: "That saved a wretch like me!", translation: "拯救了像我這樣一個無用的人！", ipa: "[ðæt seɪvd ə retʃ laɪk miː]", pinyin: "德特 誰夫德 額 瑞奇 賴克 密！", audio: "audio/ag_2.mp3" },
-                { text: "I once was lost, but now am found;", translation: "我曾迷失，如今已被尋回；", ipa: "[aɪ wʌns wɒz lɒst / bʌt naʊ æm faʊnd]", pinyin: "愛 望斯 瓦茲 羅斯特，霸特 鬧 誒姆 芳德；", audio: "audio/ag_3.mp3" },
-                { text: "Was blind, but now I see.", translation: "曾經盲目，如今終得看見。", ipa: "[wɒz blaɪnd / bʌt naʊ aɪ siː]", pinyin: "瓦茲 布賴恩德，霸特 鬧 愛 係。", audio: "audio/ag_4.mp3" },
-                { text: "'Twas grace that taught my heart to fear,", translation: "是恩典教導我的心敬畏，", ipa: "[twɒz ɡreɪs ðæt tɔːt maɪ hɑːt tuː fɪə]", pinyin: "特瓦茲 葛雷斯 德特 討特 麥 哈特 吐 飛兒", audio: "audio/ag_5.mp3" },
-                { text: "And grace my fears relieved;", translation: "也是恩典釋放了我的恐懼；", ipa: "[ænd ɡreɪs maɪ fɪəz rɪˈliːvd]", pinyin: "安德 葛雷斯 麥 飛兒茲 瑞利夫德；", audio: "audio/ag_6.mp3" },
-                { text: "How precious did that grace appear", translation: "這恩典顯得何等珍貴，", ipa: "[haʊ ˈpreʃəs dɪd ðæt ɡreɪs əˈpɪə]", pinyin: "豪 普瑞夏斯 迪德 德特 葛雷斯 額批兒", audio: "audio/ag_7.mp3" },
-                { text: "The hour I first believed.", translation: "在我初信的那一刻。", ipa: "[ðiː ˈaʊə aɪ fɜːst bɪˈliːvd]", pinyin: "德 奧兒 愛 佛斯特 逼利夫德。", audio: "audio/ag_8.mp3" },
-                { text: "Through many dangers, toils and snares,", translation: "歷經無數險阻、艱辛與網羅，", ipa: "[θruː ˈmeni ˈdeɪndʒəz / tɔɪlz ænd sneəz]", pinyin: "思路 妹尼 頂者茲 / 偷意爾茲 恩德 絲內兒茲", audio: "audio/ag_9.mp3" },
-                { text: "I have already come;", translation: "我已安然度過；", ipa: "[aɪ hæv ɔːlˈredi kʌm]", pinyin: "愛 漢夫 歐瑞迪 康；", audio: "audio/ag_10.mp3" },
-                { text: "'Tis grace hath brought me safe thus far,", translation: "是恩典帶領我平安走到如今，", ipa: "[tɪz ɡreɪs hæθ brɔːt miː seɪf ðʌs fɑː]", pinyin: "特意茲 葛雷斯 哈思 不若特 密 誰夫 達斯 法兒", audio: "audio/ag_11.mp3" },
-                { text: "And grace will lead me home.", translation: "恩典也將帶領我回到天家。", ipa: "[ænd ɡreɪs wɪl liːd miː həʊm]", pinyin: "安德 葛雷斯 威爾 利德 密 吼姆。", audio: "audio/ag_12.mp3" },
-                { text: "When we've been there ten thousand years,", translation: "當我們在那裡度過一萬年，", ipa: "[wen wiːv biːn ðeə ten ˈθaʊzənd jɪəz]", pinyin: "溫 威夫 賓 德兒 顛 哨森德 意兒茲", audio: "audio/ag_13.mp3" },
-                { text: "Bright shining as the sun,", translation: "如太陽般耀眼奪目，", ipa: "[braɪt ˈʃaɪnɪŋ æz ðə sʌn]", pinyin: "不賴特 曬寧 誒茲 德 傘", audio: "audio/ag_14.mp3" },
-                { text: "We've no less days to sing God's praise", translation: "我們仍有無限歲月歌頌上帝的讚美，", ipa: "[wiːv nəʊ les deɪz tuː sɪŋ ɡɒdz preɪz]", pinyin: "威夫 弄 萊斯 頂茲 吐 頂 嘎茲 普瑞茲", audio: "audio/ag_15.mp3" },
-                { text: "Than when we first begun.", translation: "就像我們最初開始的那天一樣。", ipa: "[ðæn wen wiː fɜːst bɪˈɡʌn]", pinyin: "丹 溫 威 佛斯特 逼甘。", audio: "audio/ag_16.mp3" }
+                { 
+                    text: "Amazing grace! How sweet the sound", 
+                    translation: "奇異恩典！何等甘甜的歌聲", 
+                    ipa: "[əˈmeɪzɪŋ ɡreɪs / haʊ swiːt ðə saʊnd]", 
+                    pinyin: "阿妹晶 葛雷斯！豪 絲威特 德 桑德", 
+                    audio: "audio/ag_1.mp3",
+                    notes: [
+                        {midi: 62, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 62, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "That saved a wretch like me!", 
+                    translation: "拯救了像我這樣一個無用的人！", 
+                    ipa: "[ðæt seɪvd ə retʃ laɪk miː]", 
+                    pinyin: "德特 誰夫德 額 瑞奇 賴克 密！", 
+                    audio: "audio/ag_2.mp3",
+                    notes: [
+                        {midi: 62, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 74, duration: 4.0}
+                    ]
+                },
+                { 
+                    text: "I once was lost, but now am found;", 
+                    translation: "我曾迷失，如今已被尋回；", 
+                    ipa: "[aɪ wʌns wɒz lɒst / bʌt naʊ æm faʊnd]", 
+                    pinyin: "愛 望斯 瓦茲 羅斯特，霸特 鬧 誒姆 芳德；", 
+                    audio: "audio/ag_3.mp3",
+                    notes: [
+                        {midi: 71, duration: 1.0}, {midi: 74, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 74, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 67, duration: 1.0}, {midi: 62, duration: 2.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "Was blind, but now I see.", 
+                    translation: "曾經盲目，如今終得看見。", 
+                    ipa: "[wɒz blaɪnd / bʌt naʊ aɪ siː]", 
+                    pinyin: "瓦茲 布賴恩德，霸特 鬧 愛 係。", 
+                    audio: "audio/ag_4.mp3",
+                    notes: [
+                        {midi: 64, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 4.0}
+                    ]
+                },
+                { 
+                    text: "'Twas grace that taught my heart to fear,", 
+                    translation: "是恩典教導我的心敬畏，", 
+                    ipa: "[twɒz ɡreɪs ðæt tɔːt maɪ hɑːt tuː fɪə]", 
+                    pinyin: "特瓦茲 葛雷斯 德特 討特 麥 哈特 吐 飛兒", 
+                    audio: "audio/ag_5.mp3",
+                    notes: [
+                        {midi: 62, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 62, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "And grace my fears relieved;", 
+                    translation: "也是恩典釋放了我的恐懼；", 
+                    ipa: "[ænd ɡreɪs maɪ fɪəz rɪˈliːvd]", 
+                    pinyin: "安德 葛雷斯 麥 飛兒茲 瑞利夫德；", 
+                    audio: "audio/ag_6.mp3",
+                    notes: [
+                        {midi: 62, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 74, duration: 4.0}
+                    ]
+                },
+                { 
+                    text: "How precious did that grace appear", 
+                    translation: "這恩典顯得何等珍貴，", 
+                    ipa: "[haʊ ˈpreʃəs dɪd ðæt ɡreɪs əˈpɪə]", 
+                    pinyin: "豪 普瑞夏斯 迪德 德特 葛雷斯 額批兒", 
+                    audio: "audio/ag_7.mp3",
+                    notes: [
+                        {midi: 71, duration: 1.0}, {midi: 74, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 74, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 67, duration: 1.0}, {midi: 62, duration: 2.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "The hour I first believed.", 
+                    translation: "在我初信的那一刻。", 
+                    ipa: "[ðiː ˈaʊə aɪ fɜːst bɪˈliːvd]", 
+                    pinyin: "德 奧兒 愛 佛斯特 逼利夫德。", 
+                    audio: "audio/ag_8.mp3",
+                    notes: [
+                        {midi: 64, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 4.0}
+                    ]
+                },
+                { 
+                    text: "Through many dangers, toils and snares,", 
+                    translation: "歷經無數險阻、艱辛與網羅，", 
+                    ipa: "[θruː ˈmeni ˈdeɪndʒəz / tɔɪlz ænd sneəz]", 
+                    pinyin: "思路 妹尼 頂者茲 / 偷意爾茲 恩德 絲內兒茲", 
+                    audio: "audio/ag_9.mp3",
+                    notes: [
+                        {midi: 62, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 62, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "I have already come;", 
+                    translation: "我已安然度過；", 
+                    ipa: "[aɪ hæv ɔːlˈredi kʌm]", 
+                    pinyin: "愛 漢夫 歐瑞迪 康；", 
+                    audio: "audio/ag_10.mp3",
+                    notes: [
+                        {midi: 62, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 74, duration: 4.0}
+                    ]
+                },
+                { 
+                    text: "'Tis grace hath brought me safe thus far,", 
+                    translation: "是恩典帶領我平安走到如今，", 
+                    ipa: "[tɪz ɡreɪs hæθ brɔːt miː seɪf ðʌs fɑː]", 
+                    pinyin: "特意茲 葛雷斯 哈思 不若特 密 誰夫 達斯 法兒", 
+                    audio: "audio/ag_11.mp3",
+                    notes: [
+                        {midi: 71, duration: 1.0}, {midi: 74, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 74, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 67, duration: 1.0}, {midi: 62, duration: 2.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "And grace will lead me home.", 
+                    translation: "恩典也將帶領我回到天家。", 
+                    ipa: "[ænd ɡreɪs wɪl liːd miː həʊm]", 
+                    pinyin: "安德 葛雷斯 威爾 利德 密 吼姆。", 
+                    audio: "audio/ag_12.mp3",
+                    notes: [
+                        {midi: 64, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 4.0}
+                    ]
+                },
+                { 
+                    text: "When we've been there ten thousand years,", 
+                    translation: "當我們在那裡度過一萬年，", 
+                    ipa: "[wen wiːv biːn ðeə ten ˈθaʊzənd jɪəz]", 
+                    pinyin: "溫 威夫 賓 德兒 顛 哨森德 意兒茲", 
+                    audio: "audio/ag_13.mp3",
+                    notes: [
+                        {midi: 62, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 62, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "Bright shining as the sun,", 
+                    translation: "如太陽般耀眼奪目，", 
+                    ipa: "[braɪt ˈʃaɪnɪŋ æz ðə sʌn]", 
+                    pinyin: "不賴特 曬寧 誒茲 德 傘", 
+                    audio: "audio/ag_14.mp3",
+                    notes: [
+                        {midi: 62, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 74, duration: 4.0}
+                    ]
+                },
+                { 
+                    text: "We've no less days to sing God's praise", 
+                    translation: "我們仍有無限歲月歌頌上帝的讚美，", 
+                    ipa: "[wiːv nəʊ les deɪz tuː sɪŋ ɡɒdz preɪz]", 
+                    pinyin: "威夫 弄 萊斯 頂茲 吐 頂 嘎茲 普瑞茲", 
+                    audio: "audio/ag_15.mp3",
+                    notes: [
+                        {midi: 71, duration: 1.0}, {midi: 74, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 74, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 67, duration: 1.0}, {midi: 62, duration: 2.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "Than when we first begun.", 
+                    translation: "就像我們最初開始的那天一樣。", 
+                    ipa: "[ðæn wen wiː fɜːst bɪˈɡʌn]", 
+                    pinyin: "丹 溫 威 佛斯特 逼甘。", 
+                    audio: "audio/ag_16.mp3",
+                    notes: [
+                        {midi: 64, duration: 1.0}, {midi: 67, duration: 2.0}, {midi: 71, duration: 0.5}, {midi: 67, duration: 0.5}, 
+                        {midi: 71, duration: 2.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 4.0}
+                    ]
+                }
             ]
         },
         sg: {
             title: "Down by the Salley Gardens (莎莉花園深處)",
             desc: "詞：威廉·巴特勒·葉慈 (W. B. Yeats) | 優美而帶有年少悔恨的愛爾蘭民謠經典。",
+            tempo: 75,
             lines: [
-                { text: "Down by the salley gardens my love and I did meet;", translation: "在柳樹園的深處，我和我的愛人相遇；", ipa: "[daʊn baɪ ðə ˈsæli ˈɡɑːdənz / maɪ lʌv ænd aɪ dɪd miːt]", pinyin: "當 拜 德 薩利 嘎登茲 / 麥 拉夫 恩德 愛 迪德 密特", audio: "audio/sg_1.mp3" },
-                { text: "She passed the salley gardens with little snow-white feet.", translation: "她邁著雪白的小腳，走過柳樹園。", ipa: "[ʃiː pɑːst ðə ˈsæli ˈɡɑːdənz / wɪð ˈlɪtəl snəʊ-waɪt fiːt]", pinyin: "係 帕斯特 德 薩利 嘎登茲 / 威茲 麗特 斯諾-歪特 費特", audio: "audio/sg_2.mp3" },
-                { text: "She bid me take love easy, as the leaves grow on the tree;", translation: "她勸我對戀愛抱持淡然的態度，就像樹上長出綠葉那樣自然；", ipa: "[ʃiː bɪd miː teɪk lʌv ˈiːzi / æz ðə liːvz ɡrəʊ ɒn ðə triː]", pinyin: "係 必得 密 帖克 拉夫 意吉 / 誒茲 德 麗夫茲 歌肉 昂 德 區", audio: "audio/sg_3.mp3" },
-                { text: "But I, being young and foolish, with her would not agree.", translation: "但那時的我年輕愚蠢，不肯聽從她的勸告。", ipa: "[bʌt aɪ / ˈbiːɪŋ jʌŋ ænd ˈfuːlɪʃ / wɪð hɜː wʊd nɒt əˈɡriː]", pinyin: "霸特 愛 / 逼硬 樣 恩德 夫利許 / 威茲 赫 伍德 那特 阿葛綠", audio: "audio/sg_4.mp3" },
-                { text: "In a field by the river my love and I did stand,", translation: "在河畔的一片草地上，我和我的愛人並肩站立，", ipa: "[ɪn ə fiːld baɪ ðə ˈrɪvə / maɪ lʌv ænd aɪ dɪd stænd]", pinyin: "印 額 菲爾德 拜 德 瑞佛 / 麥 拉夫 恩德 愛 迪德 絲丹德", audio: "audio/sg_5.mp3" },
-                { text: "And on my leaning shoulder she laid her snow-white hand.", translation: "她將雪白的手輕輕搭在我傾斜的肩頭。", ipa: "[ænd ɒn maɪ ˈliːnɪŋ ˈʃəʊldə / ʃiː leɪd hɜː snəʊ-waɪt hænd]", pinyin: "安德 昂 麥 離寧 秀德 / 係 累德 赫 斯諾-歪特 漢德", audio: "audio/sg_6.mp3" },
-                { text: "She bid me take life easy, as the grass grows on the weirs;", translation: "她勸我對生活隨遇而安，就像堰壩上生長的青草那樣泰然；", ipa: "[ʃiː bɪd miː teɪk laɪf ˈiːzi / æz ðə ɡrɑːs ɡrəʊz ɒn ðə wɪəz]", pinyin: "係 必得 密 帖克 賴夫 意吉 / 誒茲 德 葛拉斯 歌肉茲 昂 德 威兒茲", audio: "audio/sg_7.mp3" },
-                { text: "But I was young and foolish, and now am full of tears.", translation: "但那時的我年輕愚蠢，而如今我淚流滿面。", ipa: "[bʌt aɪ wɒz jʌŋ ænd ˈfuːlɪʃ / ænd naʊ æm fʊl ɒv tɪəz]", pinyin: "霸特 愛 瓦茲 樣 恩德 夫利許 / 恩德 鬧 誒姆 夫爾 歐夫 梯兒茲", audio: "audio/sg_8.mp3" }
+                { 
+                    text: "Down by the salley gardens my love and I did meet;", 
+                    translation: "在柳樹園的深處，我和我的愛人相遇；", 
+                    ipa: "[daʊn baɪ ðə ˈsæli ˈɡɑːdənz / maɪ lʌv ænd aɪ dɪd miːt]", 
+                    pinyin: "當 拜 德 薩利 嘎登茲 / 麥 拉夫 恩德 愛 迪德 密特", 
+                    audio: "audio/sg_1.mp3",
+                    notes: [
+                        {midi: 64, duration: 1.0}, {midi: 67, duration: 1.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 1.5}, 
+                        {midi: 64, duration: 0.5}, {midi: 62, duration: 1.0}, {midi: 60, duration: 1.0}, {midi: 62, duration: 1.0}, 
+                        {midi: 64, duration: 1.5}, {midi: 67, duration: 0.5}, {midi: 69, duration: 1.0}, {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "She passed the salley gardens with little snow-white feet.", 
+                    translation: "她邁著雪白的小腳，走過柳樹園。", 
+                    ipa: "[ʃiː pɑːst ðə ˈsæli ˈɡɑːdənz / wɪð ˈlɪtəl snəʊ-waɪt fiːt]", 
+                    pinyin: "係 帕斯特 德 薩利 嘎登茲 / 威茲 麗特 斯諾-歪特 費特", 
+                    audio: "audio/sg_2.mp3",
+                    notes: [
+                        {midi: 72, duration: 1.0}, {midi: 74, duration: 1.0}, {midi: 72, duration: 1.0}, {midi: 69, duration: 1.5}, 
+                        {midi: 67, duration: 0.5}, {midi: 64, duration: 1.0}, {midi: 60, duration: 1.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 62, duration: 1.5}, {midi: 60, duration: 0.5}, {midi: 60, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "She bid me take love easy, as the leaves grow on the tree;", 
+                    translation: "她勸我對戀愛抱持淡然的態度，就像樹上長出綠葉那樣自然；", 
+                    ipa: "[ʃiː bɪd miː teɪk lʌv ˈiːzi / æz ðə liːvz ɡrəʊ ɒn ðə triː]", 
+                    pinyin: "係 必得 密 帖克 拉夫 意吉 / 誒茲 德 麗夫茲 歌肉 昂 德 區", 
+                    audio: "audio/sg_3.mp3",
+                    notes: [
+                        {midi: 72, duration: 1.0}, {midi: 74, duration: 1.0}, {midi: 72, duration: 1.0}, {midi: 69, duration: 1.5}, 
+                        {midi: 67, duration: 0.5}, {midi: 69, duration: 1.0}, {midi: 72, duration: 1.0}, {midi: 74, duration: 1.0}, 
+                        {midi: 72, duration: 1.5}, {midi: 69, duration: 0.5}, {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "But I, being young and foolish, with her would not agree.", 
+                    translation: "但那時的我年輕愚蠢，不肯聽從她的勸告。", 
+                    ipa: "[bʌt aɪ / ˈbiːɪŋ jʌŋ ænd ˈfuːlɪʃ / wɪð hɜː wʊd nɒt əˈɡriː]", 
+                    pinyin: "霸特 愛 / 逼硬 樣 恩德 夫利許 / 威茲 赫 伍德 那特 阿葛綠", 
+                    audio: "audio/sg_4.mp3",
+                    notes: [
+                        {midi: 64, duration: 1.0}, {midi: 67, duration: 1.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 1.5}, 
+                        {midi: 64, duration: 0.5}, {midi: 62, duration: 1.0}, {midi: 60, duration: 1.0}, {midi: 62, duration: 1.0}, 
+                        {midi: 64, duration: 1.5}, {midi: 67, duration: 0.5}, {midi: 69, duration: 1.0}, {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "In a field by the river my love and I did stand,", 
+                    translation: "在河畔的一片草地上，我和我的愛人並肩站立，", 
+                    ipa: "[ɪn ə fiːld baɪ ðə ˈrɪvə / maɪ lʌv ænd aɪ dɪd stænd]", 
+                    pinyin: "印 額 菲爾德 拜 德 瑞佛 / 麥 拉夫 恩德 愛 迪德 絲丹德", 
+                    audio: "audio/sg_5.mp3",
+                    notes: [
+                        {midi: 64, duration: 1.0}, {midi: 67, duration: 1.0}, {midi: 69, duration: 1.0}, {midi: 67, duration: 1.5}, 
+                        {midi: 64, duration: 0.5}, {midi: 62, duration: 1.0}, {midi: 60, duration: 1.0}, {midi: 62, duration: 1.0}, 
+                        {midi: 64, duration: 1.5}, {midi: 67, duration: 0.5}, {midi: 69, duration: 1.0}, {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "And on my leaning shoulder she laid her snow-white hand.", 
+                    translation: "她將雪白的手輕輕搭在我傾斜的肩頭。", 
+                    ipa: "[ænd ɒn maɪ ˈliːnɪŋ ˈʃəʊldə / ʃiː leɪd hɜː snəʊ-waɪt hænd]", 
+                    pinyin: "安德 昂 麥 離寧 秀德 / 係 累德 赫 斯諾-歪特 漢德", 
+                    audio: "audio/sg_6.mp3",
+                    notes: [
+                        {midi: 72, duration: 1.0}, {midi: 74, duration: 1.0}, {midi: 72, duration: 1.0}, {midi: 69, duration: 1.5}, 
+                        {midi: 67, duration: 0.5}, {midi: 64, duration: 1.0}, {midi: 60, duration: 1.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 62, duration: 1.5}, {midi: 60, duration: 0.5}, {midi: 60, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "She bid me take life easy, as the grass grows on the weirs;", 
+                    translation: "她勸我對生活隨遇而安，就像堰壩上生長的青草那樣泰然；", 
+                    ipa: "[ʃiː bɪd miː teɪk laɪf ˈiːzi / æz ðə ɡrɑːs ɡrəʊz ɒn ðə wɪəz]", 
+                    pinyin: "係 必得 密 帖克 賴夫 意吉 / 誒茲 德 葛拉斯 歌肉茲 昂 德 威兒茲", 
+                    audio: "audio/sg_7.mp3",
+                    notes: [
+                        {midi: 72, duration: 1.0}, {midi: 74, duration: 1.0}, {midi: 72, duration: 1.0}, {midi: 69, duration: 1.5}, 
+                        {midi: 67, duration: 0.5}, {midi: 69, duration: 1.0}, {midi: 72, duration: 1.0}, {midi: 74, duration: 1.0}, 
+                        {midi: 72, duration: 1.5}, {midi: 69, duration: 0.5}, {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "But I was young and foolish, and now am full of tears.", 
+                    translation: "但那時的我年輕愚蠢，而如今我淚流滿面。", 
+                    ipa: "[bʌt aɪ wɒz jʌŋ ænd ˈfuːlɪʃ / ænd naʊ æm fʊl ɒv tɪəz]", 
+                    pinyin: "霸特 愛 瓦茲 樣 恩德 夫利許 / 恩德 鬧 誒姆 夫爾 歐夫 梯兒茲", 
+                    audio: "audio/sg_8.mp3",
+                    notes: [
+                        {midi: 72, duration: 1.0}, {midi: 74, duration: 1.0}, {midi: 72, duration: 1.0}, {midi: 69, duration: 1.5}, 
+                        {midi: 67, duration: 0.5}, {midi: 64, duration: 1.0}, {midi: 60, duration: 1.0}, {midi: 64, duration: 1.0}, 
+                        {midi: 62, duration: 1.5}, {midi: 60, duration: 0.5}, {midi: 60, duration: 2.0}
+                    ]
+                }
             ]
         },
         sl: {
             title: "Santa Lucia (桑塔露琪亞)",
-            desc: "原詞：特奧多羅·科特勞 (Teodoro Cottrau) | 經典義大利拿坡里船歌，陽溢地中海月光與波浪搖曳風情。",
+            desc: "詞：特奧多羅·科特勞 (Teodoro Cottrau) | 經典拿坡里船歌，本網頁使用正宗義大利發音朗讀與旋律教唱。",
+            tempo: 100,
             lines: [
-                { text: "Sul mare luccica l’astro d’argento.", translation: "銀色的月星在海面上閃爍。", ipa: "[sul ˈmaːre ˈluttʃika ˈlastro darˈdʒɛnto]", pinyin: "蘇爾 媽雷 綠七卡 拉斯脫 達爾健脫", audio: "audio/sl_1.mp3" },
-                { text: "Placida è l’onda, prospero è il vento.", translation: "微波粼粼，風兒和煦。", ipa: "[ˈplatʃida ˈɛ ˈlonda / ˈprɔspero ˈɛ il ˈvento]", pinyin: "鋪拉七達 誒 隆達，鋪若斯陪若 誒 意爾 溫脫", audio: "audio/sl_2.mp3" },
-                { text: "Venite all’agile barchetta mia,", translation: "快來坐上我這輕巧的小船吧，", ipa: "[veˈniːte alˈlaːdʒile barˈketta ˈmiːa]", pinyin: "微尼帖 阿拉吉雷 巴爾科特塔 咪啊", audio: "audio/sl_3.mp3" },
-                { text: "Santa Lucia! Santa Lucia!", translation: "桑塔露琪亞！桑塔露琪亞！", ipa: "[ˈsanta luˈtʃiːa / ˈsanta luˈtʃiːa]", pinyin: "桑塔 露琪亞！桑塔 露琪亞！", audio: "audio/sl_4.mp3" },
-                { text: "Con questo zeffiro così soave,", translation: "伴著這般溫柔和煦的微風，", ipa: "[kon ˈkwesto ˈdzɛffiro koˈzi soˈaːve]", pinyin: "空 虧斯脫 ㄗㄟ飛若 扣吉 索阿微", audio: "audio/sl_5.mp3" },
-                { text: "Oh, com’è bello star sulla nave!", translation: "啊！在船上乘風破浪是多麼愜意！", ipa: "[ɔ / koˈmɛ bˈbɛllo ˈstar ˈsulla ˈnaːve]", pinyin: "喔，扣美 貝羅 絲達爾 蘇拉 納微", audio: "audio/sl_6.mp3" },
-                { text: "Su passeggeri, venite via!", translation: "乘客們，快動身出發吧！", ipa: "[su passeaˈdʒɛːri / veˈniːte ˈviːa]", pinyin: "蘇 趴塞健里，微尼帖 菲亞", audio: "audio/sl_7.mp3" },
-                { text: "Santa Lucia! Santa Lucia!", translation: "桑塔露琪亞！桑塔露琪亞！", ipa: "[ˈsanta luˈtʃiːa / ˈsanta luˈtʃiːa]", pinyin: "桑塔 露琪亞！桑塔 露琪亞！", audio: "audio/sl_8.mp3" }
+                { 
+                    text: "Sul mare luccica l’astro d’argento.", 
+                    translation: "銀色的月星在海面上閃爍。", 
+                    ipa: "[sul ˈmaːre ˈluttʃika ˈlastro darˈdʒɛnto]", 
+                    pinyin: "蘇爾 媽雷 綠七卡 拉斯脫 達爾健脫", 
+                    audio: "audio/sl_1.mp3",
+                    notes: [
+                        {midi: 67, duration: 3.0}, {midi: 67, duration: 1.0}, {midi: 72, duration: 2.0}, {midi: 64, duration: 3.0}, 
+                        {midi: 64, duration: 1.0}, {midi: 62, duration: 2.0}, {midi: 60, duration: 3.0}, {midi: 62, duration: 1.0}, 
+                        {midi: 65, duration: 2.0}, {midi: 69, duration: 4.0}, {midi: 69, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "Placida è l’onda, prospero è il vento.", 
+                    translation: "微波粼粼，風兒和煦。", 
+                    ipa: "[ˈplatʃida ˈɛ ˈlonda / ˈprɔspero ˈɛ il ˈvento]", 
+                    pinyin: "鋪拉七達 誒 隆達，鋪若斯陪若 誒 意爾 溫脫", 
+                    audio: "audio/sl_2.mp3",
+                    notes: [
+                        {midi: 65, duration: 3.0}, {midi: 65, duration: 1.0}, {midi: 71, duration: 2.0}, {midi: 62, duration: 3.0}, 
+                        {midi: 62, duration: 1.0}, {midi: 60, duration: 2.0}, {midi: 59, duration: 3.0}, {midi: 60, duration: 1.0}, 
+                        {midi: 64, duration: 2.0}, {midi: 67, duration: 4.0}, {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "Venite all’agile barchetta mia,", 
+                    translation: "快來坐上我這輕巧的小船吧，", 
+                    ipa: "[veˈniːte alˈlaːdʒile barˈketta ˈmiːa]", 
+                    pinyin: "微尼帖 阿拉吉雷 巴爾科特塔 咪啊", 
+                    audio: "audio/sl_3.mp3",
+                    notes: [
+                        {midi: 67, duration: 3.0}, {midi: 67, duration: 1.0}, {midi: 72, duration: 2.0}, {midi: 64, duration: 3.0}, 
+                        {midi: 64, duration: 1.0}, {midi: 62, duration: 2.0}, {midi: 60, duration: 1.5}, {midi: 59, duration: 0.5}, 
+                        {midi: 60, duration: 1.0}, {midi: 62, duration: 1.0}, {midi: 64, duration: 1.0}, {midi: 65, duration: 1.0}
+                    ]
+                },
+                { 
+                    text: "Santa Lucia! Santa Lucia!", 
+                    translation: "桑塔露琪亞！桑塔露琪亞！", 
+                    ipa: "[ˈsanta luˈtʃiːa / ˈsanta luˈtʃiːa]", 
+                    pinyin: "桑塔 露琪亞！桑塔 露琪亞！", 
+                    audio: "audio/sl_4.mp3",
+                    notes: [
+                        {midi: 69, duration: 3.0}, {midi: 69, duration: 1.0}, {midi: 74, duration: 2.0}, {midi: 71, duration: 3.0}, 
+                        {midi: 67, duration: 1.0}, {midi: 69, duration: 2.0}, {midi: 71, duration: 2.0}, {midi: 72, duration: 4.0}
+                    ]
+                },
+                { 
+                    text: "Con questo zeffiro così soave,", 
+                    translation: "伴著這般溫柔和煦的微風，", 
+                    ipa: "[kon ˈkwesto ˈdzɛffiro koˈzi soˈaːve]", 
+                    pinyin: "空 虧斯脫 ㄗㄟ飛若 扣吉 索阿微", 
+                    audio: "audio/sl_5.mp3",
+                    notes: [
+                        {midi: 67, duration: 3.0}, {midi: 67, duration: 1.0}, {midi: 72, duration: 2.0}, {midi: 64, duration: 3.0}, 
+                        {midi: 64, duration: 1.0}, {midi: 62, duration: 2.0}, {midi: 60, duration: 3.0}, {midi: 62, duration: 1.0}, 
+                        {midi: 65, duration: 2.0}, {midi: 69, duration: 4.0}, {midi: 69, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "Oh, com’è bello star sulla nave!", 
+                    translation: "啊！在船上乘風破浪是多麼愜意！", 
+                    ipa: "[ɔ / koˈmɛ bˈbɛllo ˈstar ˈsulla ˈnaːve]", 
+                    pinyin: "喔，扣美 貝羅 絲達爾 蘇拉 納微", 
+                    audio: "audio/sl_6.mp3",
+                    notes: [
+                        {midi: 65, duration: 3.0}, {midi: 65, duration: 1.0}, {midi: 71, duration: 2.0}, {midi: 62, duration: 3.0}, 
+                        {midi: 62, duration: 1.0}, {midi: 60, duration: 2.0}, {midi: 59, duration: 3.0}, {midi: 60, duration: 1.0}, 
+                        {midi: 64, duration: 2.0}, {midi: 67, duration: 4.0}, {midi: 67, duration: 2.0}
+                    ]
+                },
+                { 
+                    text: "Su passeggeri, venite via!", 
+                    translation: "乘客們，快動身出發吧！", 
+                    ipa: "[su passeaˈdʒɛːri / veˈniːte ˈviːa]", 
+                    pinyin: "蘇 趴塞健里，微尼帖 菲亞", 
+                    audio: "audio/sl_7.mp3",
+                    notes: [
+                        {midi: 67, duration: 3.0}, {midi: 67, duration: 1.0}, {midi: 72, duration: 2.0}, {midi: 64, duration: 3.0}, 
+                        {midi: 64, duration: 1.0}, {midi: 62, duration: 2.0}, {midi: 60, duration: 1.5}, {midi: 59, duration: 0.5}, 
+                        {midi: 60, duration: 1.0}, {midi: 62, duration: 1.0}, {midi: 64, duration: 1.0}, {midi: 65, duration: 1.0}
+                    ]
+                },
+                { 
+                    text: "Santa Lucia! Santa Lucia!", 
+                    translation: "桑塔露琪亞！桑塔露琪亞！", 
+                    ipa: "[ˈsanta luˈtʃiːa / ˈsanta luˈtʃiːa]", 
+                    pinyin: "桑塔 露琪亞！桑塔 露琪亞！", 
+                    audio: "audio/sl_8.mp3",
+                    notes: [
+                        {midi: 69, duration: 3.0}, {midi: 69, duration: 1.0}, {midi: 74, duration: 2.0}, {midi: 71, duration: 3.0}, 
+                        {midi: 67, duration: 1.0}, {midi: 69, duration: 2.0}, {midi: 71, duration: 2.0}, {midi: 72, duration: 4.0}
+                    ]
+                }
             ]
         }
     };
@@ -523,9 +961,12 @@
     let currentSongId = "ag";
     let activeLineIndex = -1;
     let isPracticeMode = false;
+    let practiceModeType = "voice"; // "voice", "melody", "both"
     let pauseDuration = 3.5; // seconds
     let repeatTimer = null;
     let countdownInterval = null;
+    let activeOscillators = [];
+    let audioContext = null;
 
     const audioPlayer = document.getElementById("audio-player");
     const playIcon = `
@@ -539,7 +980,7 @@
         </svg>
     `;
 
-    // Initialize Page
+    // Initialize page
     window.addEventListener("DOMContentLoaded", () => {
         renderLyrics(currentSongId);
         updatePauseVal(3.5);
@@ -547,12 +988,14 @@
         // Handle audio events
         audioPlayer.addEventListener("ended", onAudioEnded);
         audioPlayer.addEventListener("error", () => {
-            updateStatus("⚠️ 音檔加載失敗，請確認音檔位於正確資料夾中。", false);
-            stopPractice();
+            updateStatus("⚠️ 本機語音檔未找到，將改用旋律導唱模式。", false);
+            if (isPracticeMode && practiceModeType === "voice") {
+                stopPractice();
+            }
         });
     });
 
-    // Render lyrics lists
+    // Render lyrics cards
     function renderLyrics(songId) {
         const sheet = document.getElementById("lyrics-sheet");
         sheet.innerHTML = "";
@@ -562,24 +1005,30 @@
             const card = document.createElement("div");
             card.className = "lyric-card";
             card.id = `lyric-${index}`;
-            card.onclick = () => playSingleLine(index);
 
             card.innerHTML = `
                 <div class="lyric-num">${index + 1}</div>
                 <div class="lyric-body">
-                    <div class="lyric-original">
-                        <span>${line.text}</span>
-                        <span class="btn-speak-icon">
-                            <svg width="18" height="18" viewBox="0 0 24 24">
-                                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                            </svg>
-                        </span>
-                    </div>
+                    <div class="lyric-original">${line.text}</div>
                     <div class="lyric-translation">${line.translation}</div>
                     <div class="lyric-pho">
                         <span class="pho-ipa">${line.ipa}</span>
                         <span class="pho-pinyin">${line.pinyin}</span>
                     </div>
+                </div>
+                <div class="card-controls">
+                    <button class="card-btn btn-voice" onclick="playSingleVoice(${index}, event)">
+                        <svg width="14" height="14" viewBox="0 0 24 24">
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                        </svg>
+                        朗讀
+                    </button>
+                    <button class="card-btn btn-melody" onclick="playSingleMelody(${index}, event)">
+                        <svg width="14" height="14" viewBox="0 0 24 24">
+                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                        </svg>
+                        鋼琴旋律
+                    </button>
                 </div>
                 <!-- Repeating Indicator -->
                 <div class="repeat-overlay">
@@ -610,52 +1059,151 @@
         renderLyrics(songId);
     }
 
+    // Practice mode selection
+    function setPracticeMode(type) {
+        practiceModeType = type;
+        
+        // Update active class in toggle buttons
+        document.getElementById("mode-voice").classList.remove("active");
+        document.getElementById("mode-melody").classList.remove("active");
+        document.getElementById("mode-both").classList.remove("active");
+        
+        document.getElementById(`mode-${type}`).classList.add("active");
+    }
+
     // Update pause label
     function updatePauseVal(val) {
         pauseDuration = parseFloat(val);
         document.getElementById("pause-val").innerText = val + "秒";
     }
 
-    // Play a single line (when clicked)
-    function playSingleLine(index) {
-        if (isPracticeMode) {
-            stopPractice();
+    // Init audio context for synthesis
+    function initAudioContext() {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
         }
-        
-        highlightLine(index);
-        playAudio(songs[currentSongId].lines[index].audio);
-        updateStatus(`正在播放第 ${index + 1} 句...`, true);
+        if (audioContext.state === 'suspended') {
+            audioContext.resume();
+        }
     }
 
-    // Play specific audio path
-    function playAudio(path) {
-        audioPlayer.src = path;
+    // Web Audio Synthesizer: Play MIDI notes
+    function playMelodyNotes(notes, tempo, onEndedCallback) {
+        initAudioContext();
+        stopSynth();
+
+        let time = audioContext.currentTime;
+        const beatDuration = 60 / tempo; // duration in seconds of 1 beat
+        
+        // For Santa Lucia, notes are based on 8th notes, so scale duration
+        const durationScale = (currentSongId === "sl") ? 0.5 : 1.0; 
+
+        notes.forEach((note, idx) => {
+            const freq = 440 * Math.pow(2, (note.midi - 69) / 12);
+            const osc = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            // Triangle wave creates a warm woodwind/flute-like tone
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, time);
+            
+            const dur = note.duration * beatDuration * durationScale;
+            
+            // Gain envelope to prevent clicking
+            gainNode.gain.setValueAtTime(0, time);
+            gainNode.gain.linearRampToValueAtTime(0.2, time + 0.05); // Attack
+            gainNode.gain.setValueAtTime(0.2, time + dur - 0.03);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, time + dur); // Decay/Release
+            
+            osc.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            osc.start(time);
+            osc.stop(time + dur);
+            
+            activeOscillators.push(osc);
+            time += dur;
+        });
+
+        // Trigger callback when the whole note sequence ends
+        const totalDuration = notes.reduce((acc, note) => acc + (note.duration * beatDuration * durationScale), 0);
+        repeatTimer = setTimeout(() => {
+            if (onEndedCallback) onEndedCallback();
+        }, totalDuration * 1000);
+    }
+
+    // Stop all oscillators
+    function stopSynth() {
+        clearTimeout(repeatTimer);
+        activeOscillators.forEach(osc => {
+            try {
+                osc.stop();
+            } catch(e){}
+        });
+        activeOscillators = [];
+    }
+
+    // Play single line voice (manual click)
+    function playSingleVoice(index, event) {
+        event.stopPropagation();
+        stopPractice();
+        
+        highlightCard(index, 'voice');
+        audioPlayer.src = songs[currentSongId].lines[index].audio;
         audioPlayer.play().catch(err => {
-            console.error("Audio playback error:", err);
-            updateStatus("⚠️ 音檔加載出錯，請檢查本機音檔路徑是否正確。", false);
+            updateStatus("⚠️ 本機語音檔加載出錯，請使用鋼琴旋律練習。", false);
+        });
+        updateStatus(`正在朗讀第 ${index + 1} 句...`, true);
+    }
+
+    // Play single line melody (manual click)
+    function playSingleMelody(index, event) {
+        event.stopPropagation();
+        stopPractice();
+        
+        highlightCard(index, 'melody');
+        updateStatus(`正在播放第 ${index + 1} 句鋼琴旋律...`, true);
+        
+        const line = songs[currentSongId].lines[index];
+        playMelodyNotes(line.notes, songs[currentSongId].tempo, () => {
+            dehighlightAll();
+            updateStatus("播放結束", false);
         });
     }
 
-    // Handle end of audio playback
+    // Handle end of audio in practice mode
     function onAudioEnded() {
         if (!isPracticeMode) {
-            // In click-to-play mode, just de-highlight when done
-            setTimeout(() => {
-                dehighlightAll();
-                updateStatus("已暫停", false);
-            }, 500);
+            setTimeout(dehighlightAll, 300);
             return;
         }
 
-        // In practice mode, transition to "Repeat / Silence" state
-        startRepeatPhase();
+        if (practiceModeType === "both") {
+            // In "both" mode, play the melody next
+            playPracticeMelodyPhase();
+        } else {
+            // In "voice" only mode, transition to repeating phase
+            startRepeatPhase();
+        }
+    }
+
+    // Play practice melody phase
+    function playPracticeMelodyPhase() {
+        highlightCard(activeLineIndex, 'melody');
+        updateStatus(`正在播放第 ${activeLineIndex + 1} 句旋律...`, true);
+        document.getElementById("countdown-txt").innerText = "🎹 旋律播放中...";
+        
+        const line = songs[currentSongId].lines[activeLineIndex];
+        playMelodyNotes(line.notes, songs[currentSongId].tempo, () => {
+            startRepeatPhase();
+        });
     }
 
     // Start repeating phase with countdown
     function startRepeatPhase() {
         const activeCard = document.getElementById(`lyric-${activeLineIndex}`);
+        dehighlightAll();
         if (activeCard) {
-            activeCard.classList.remove("active");
             activeCard.classList.add("repeating");
         }
         
@@ -681,7 +1229,6 @@
             // Advance to next line
             activeLineIndex++;
             if (activeLineIndex >= songs[currentSongId].lines.length) {
-                // Song finished
                 updateStatus("🎉 練習結束！太棒了！", true);
                 stopPractice();
             } else {
@@ -692,10 +1239,21 @@
 
     // Play next line in practice queue
     function playNextPracticeLine() {
-        highlightLine(activeLineIndex);
-        updateStatus(`正在播放第 ${activeLineIndex + 1} 句...`, true);
-        document.getElementById("countdown-txt").innerText = "🔊 播放中...";
-        playAudio(songs[currentSongId].lines[activeLineIndex].audio);
+        if (practiceModeType === "voice" || practiceModeType === "both") {
+            highlightCard(activeLineIndex, 'voice');
+            updateStatus(`正在播放第 ${activeLineIndex + 1} 句語音...`, true);
+            document.getElementById("countdown-txt").innerText = "🔊 語音播放中...";
+            
+            audioPlayer.src = songs[currentSongId].lines[activeLineIndex].audio;
+            audioPlayer.play().catch(err => {
+                // If audio fails, fallback to melody
+                updateStatus(`⚠️ 朗讀檔案未找到，跳過語音播放...`, false);
+                setTimeout(playPracticeMelodyPhase, 1000);
+            });
+        } else {
+            // Melody only mode
+            playPracticeMelodyPhase();
+        }
     }
 
     // Start/Stop full practice mode
@@ -723,6 +1281,7 @@
     function stopPractice() {
         isPracticeMode = false;
         audioPlayer.pause();
+        stopSynth();
         
         // Clear all timers
         clearTimeout(repeatTimer);
@@ -739,11 +1298,15 @@
     }
 
     // UI Helpers
-    function highlightLine(index) {
+    function highlightCard(index, type) {
         dehighlightAll();
         const card = document.getElementById(`lyric-${index}`);
         if (card) {
-            card.classList.add("active");
+            if (type === 'voice') {
+                card.classList.add("active");
+            } else if (type === 'melody') {
+                card.classList.add("active-melody");
+            }
             card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
@@ -752,12 +1315,12 @@
         const cards = document.querySelectorAll(".lyric-card");
         cards.forEach(card => {
             card.classList.remove("active");
+            card.classList.remove("active-melody");
             card.classList.remove("repeating");
         });
     }
 
     function updateStatus(txt, isInfo) {
-        const bar = document.getElementById("status-bar");
         const txtEl = document.getElementById("status-txt");
         txtEl.innerText = txt;
     }

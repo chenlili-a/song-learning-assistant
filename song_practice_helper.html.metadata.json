@@ -1,5 +1,5 @@
 {
-  "summary": "A premium, interactive web application featuring bilingual lyrics, IPA, phonetic guide, and automatic audio player for learning to sing and pronounce Amazing Grace, Down by the Salley Gardens, and Santa Lucia (with native Italian TTS audio) line-by-line.",
-  "updatedAt": "2026-07-26T15:31:37.521275900Z",
+  "summary": "An updated interactive song learning web application featuring both pronunciation audio (TTS) and custom synthesized piano melody guides (Web Audio API) for each line, a practice mode selector, adjustable pause times, and glowing highlight aesthetics.",
+  "updatedAt": "2026-07-26T15:44:08.242256Z",
   "userFacing": true
 }
