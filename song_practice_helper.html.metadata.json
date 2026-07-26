@@ -1,5 +1,5 @@
 {
-  "summary": "An updated interactive song learning web application featuring both pronunciation audio (TTS) and custom synthesized piano melody guides (Web Audio API) for each line, a practice mode selector, adjustable pause times, and glowing highlight aesthetics.",
-  "updatedAt": "2026-07-26T15:44:08.242256Z",
+  "summary": "An updated song practice helper with line-by-line vocal coaching tips and a synchronized voice+piano play feature.",
+  "updatedAt": "2026-07-26T15:49:13.563807200Z",
   "userFacing": true
 }
