@@ -1023,9 +1023,14 @@
 
     let currentSongId = "ag";
     const videoUrls = {
-        ag: "https://www.youtube.com/embed/78k5K4aY35o",
-        sg: "https://www.youtube.com/embed/kYv_3e8-D-Y",
-        sl: "https://www.youtube.com/embed/X9LJaxL0URM"
+        ag: "https://www.youtube.com/watch?v=78k5K4aY35o",
+        sg: "https://www.youtube.com/watch?v=kYv_3e8-D-Y",
+        sl: "https://www.youtube.com/watch?v=X9LJaxL0URM"
+    };
+    const videoTexts = {
+        ag: "點此在新視窗開啟《Amazing Grace》真人逐句歌唱教學影片 (Lois Johnston)",
+        sg: "點此在新視窗開啟《The Salley Gardens》真人純人聲示範影片 (Peter Hollens)",
+        sl: "點此在新視窗開啟《Santa Lucia》義大利文真人歌聲示範影片"
     };
     let activeLineIndex = -1;
     let isPracticeMode = false;
@@ -1052,7 +1057,8 @@
     window.addEventListener("DOMContentLoaded", () => {
         renderLyrics(currentSongId);
         updatePauseVal(3.5);
-        document.getElementById("video-iframe").src = videoUrls[currentSongId];
+        document.getElementById("btn-video-link").href = videoUrls[currentSongId];
+        document.getElementById("video-link-text").innerText = videoTexts[currentSongId];
         
         // Handle audio events
         audioPlayer.addEventListener("ended", onAudioEnded);
@@ -1126,8 +1132,9 @@
         document.getElementById("song-title").innerText = songs[songId].title;
         document.getElementById("song-desc").innerText = songs[songId].desc;
         
-        // Update video source
-        document.getElementById("video-iframe").src = videoUrls[songId];
+        // Update video link and text
+        document.getElementById("btn-video-link").href = videoUrls[songId];
+        document.getElementById("video-link-text").innerText = videoTexts[songId];
         
         renderLyrics(songId);
     }
