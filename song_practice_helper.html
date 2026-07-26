@@ -1019,6 +1019,11 @@
     };
 
     let currentSongId = "ag";
+    const videoUrls = {
+        ag: "https://www.youtube.com/embed/78k5K4aY35o",
+        sg: "https://www.youtube.com/embed/kYv_3e8-D-Y",
+        sl: "https://www.youtube.com/embed/X9LJaxL0URM"
+    };
     let activeLineIndex = -1;
     let isPracticeMode = false;
     let practiceModeType = "voice"; // "voice", "melody", "both"
@@ -1044,6 +1049,7 @@
     window.addEventListener("DOMContentLoaded", () => {
         renderLyrics(currentSongId);
         updatePauseVal(3.5);
+        document.getElementById("video-iframe").src = videoUrls[currentSongId];
         
         // Handle audio events
         audioPlayer.addEventListener("ended", onAudioEnded);
@@ -1116,6 +1122,9 @@
         // Update header details
         document.getElementById("song-title").innerText = songs[songId].title;
         document.getElementById("song-desc").innerText = songs[songId].desc;
+        
+        // Update video source
+        document.getElementById("video-iframe").src = videoUrls[songId];
         
         renderLyrics(songId);
     }
