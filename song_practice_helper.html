@@ -607,6 +607,10 @@
             title: "Amazing Grace (奇異恩典)",
             desc: "詞：約翰·牛頓 (John Newton) | 英國經典聖詩，感人至深的救贖與恩典之歌。",
             tempo: 85,
+            videoUrl: "https://www.youtube.com/watch?v=78k5K4aY35o",
+            videoText: "開啟《Amazing Grace》推薦教唱影片",
+            ytSearchUrl: "https://www.youtube.com/results?search_query=Amazing+Grace+唱歌教學",
+            ytSearchText: "在 YouTube 搜尋《Amazing Grace》教唱",
             lines: [
                 { 
                     text: "Amazing grace! How sweet the sound", 
@@ -814,6 +818,10 @@
             title: "Down by the Salley Gardens (莎莉花園深處)",
             desc: "詞：威廉·巴特勒·葉慈 (W. B. Yeats) | 優美而帶有年少悔恨的愛爾蘭民謠經典。",
             tempo: 75,
+            videoUrl: "https://www.youtube.com/watch?v=kYv_3e8-D-Y",
+            videoText: "開啟《The Salley Gardens》純人聲示範影片",
+            ytSearchUrl: "https://www.youtube.com/results?search_query=Down+by+the+Salley+Gardens+唱歌教學",
+            ytSearchText: "在 YouTube 搜尋《莎莉花園》教唱",
             lines: [
                 { 
                     text: "Down by the salley gardens my love and I did meet;", 
@@ -925,6 +933,10 @@
             title: "Santa Lucia (桑塔露琪亞)",
             desc: "詞：特奧多羅·科特勞 (Teodoro Cottrau) | 經典拿坡里船歌，本網頁使用正宗義大利發音朗讀與旋律教唱。",
             tempo: 100,
+            videoUrl: "https://www.youtube.com/watch?v=X9LJaxL0URM",
+            videoText: "開啟《Santa Lucia》義大利文歌聲示範",
+            ytSearchUrl: "https://www.youtube.com/results?search_query=Santa+Lucia+聲樂教學",
+            ytSearchText: "在 YouTube 搜尋《桑塔露琪亞》教唱",
             lines: [
                 { 
                     text: "Sul mare luccica l’astro d’argento.", 
@@ -1033,26 +1045,6 @@
     };
 
     let currentSongId = "ag";
-    const videoUrls = {
-        ag: "https://www.youtube.com/watch?v=78k5K4aY35o",
-        sg: "https://www.youtube.com/watch?v=kYv_3e8-D-Y",
-        sl: "https://www.youtube.com/watch?v=X9LJaxL0URM"
-    };
-    const videoTexts = {
-        ag: "開啟《Amazing Grace》推薦教唱影片",
-        sg: "開啟《The Salley Gardens》純人聲示範影片",
-        sl: "開啟《Santa Lucia》義大利文歌聲示範"
-    };
-    const ytSearchUrls = {
-        ag: "https://www.youtube.com/results?search_query=Amazing+Grace+唱歌教學",
-        sg: "https://www.youtube.com/results?search_query=Down+by+the+Salley+Gardens+唱歌教學",
-        sl: "https://www.youtube.com/results?search_query=Santa+Lucia+聲樂教學"
-    };
-    const ytSearchTexts = {
-        ag: "在 YouTube 搜尋《Amazing Grace》教唱",
-        sg: "在 YouTube 搜尋《莎莉花園》教唱",
-        sl: "在 YouTube 搜尋《桑塔露琪亞》教唱"
-    };
     let activeLineIndex = -1;
     let isPracticeMode = false;
     let practiceModeType = "voice"; // "voice", "melody", "both"
@@ -1078,10 +1070,10 @@
     window.addEventListener("DOMContentLoaded", () => {
         renderLyrics(currentSongId);
         updatePauseVal(3.5);
-        document.getElementById("btn-video-link").href = videoUrls[currentSongId];
-        document.getElementById("video-link-text").innerText = videoTexts[currentSongId];
-        document.getElementById("btn-yt-search-link").href = ytSearchUrls[currentSongId];
-        document.getElementById("yt-search-text").innerText = ytSearchTexts[currentSongId];
+        document.getElementById("btn-video-link").href = songs[currentSongId].videoUrl;
+        document.getElementById("video-link-text").innerText = songs[currentSongId].videoText;
+        document.getElementById("btn-yt-search-link").href = songs[currentSongId].ytSearchUrl;
+        document.getElementById("yt-search-text").innerText = songs[currentSongId].ytSearchText;
         
         // Handle audio events
         audioPlayer.addEventListener("ended", onAudioEnded);
@@ -1156,10 +1148,10 @@
         document.getElementById("song-desc").innerText = songs[songId].desc;
         
         // Update video links and texts
-        document.getElementById("btn-video-link").href = videoUrls[songId];
-        document.getElementById("video-link-text").innerText = videoTexts[songId];
-        document.getElementById("btn-yt-search-link").href = ytSearchUrls[songId];
-        document.getElementById("yt-search-text").innerText = ytSearchTexts[songId];
+        document.getElementById("btn-video-link").href = songs[songId].videoUrl;
+        document.getElementById("video-link-text").innerText = songs[songId].videoText;
+        document.getElementById("btn-yt-search-link").href = songs[songId].ytSearchUrl;
+        document.getElementById("yt-search-text").innerText = songs[songId].ytSearchText;
         
         renderLyrics(songId);
     }
