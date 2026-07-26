@@ -1,4 +1,4 @@
 {
-  "summary": "A PowerShell script to create a Desktop shortcut for the interactive song practice helper page.",
-  "updatedAt": "2026-07-26T16:03:42.912871300Z"
+  "summary": "A revised PowerShell script that creates a Desktop shortcut with an English filename (Song_Practice_Helper.lnk) to avoid Chinese character encoding issues in Windows CMD/PowerShell.",
+  "updatedAt": "2026-07-26T16:03:52.239703300Z"
 }
