@@ -1,5 +1,9 @@
 # Down by the Salley Gardens (莎莉花園深處) 歌詞與發音學習單
 
+### 🎧 慢速朗讀語音教學
+* **[點此播放慢速朗讀音檔 (WAV)](file:///C:/Users/Chen/.gemini/antigravity/brain/ad2b16ce-4b04-4380-84e8-bf394ff8a5e4/the_salley_gardens_pronunciation.wav)**
+* *說明：點選上方連結播放。音檔中每唸完一句，會預留 3.5 秒的空白時間供您跟著大聲唸出，以練習發音與語音節奏。*
+
 ## 1. 完整歌詞對照
 | 英文歌詞 | 中文翻譯 |
 | :--- | :--- |
