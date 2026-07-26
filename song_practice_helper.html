@@ -1038,9 +1038,19 @@
         sl: "https://www.youtube.com/watch?v=X9LJaxL0URM"
     };
     const videoTexts = {
-        ag: "點此在新視窗開啟《Amazing Grace》真人逐句歌唱教學影片 (Lois Johnston)",
-        sg: "點此在新視窗開啟《The Salley Gardens》真人純人聲示範影片 (Peter Hollens)",
-        sl: "點此在新視窗開啟《Santa Lucia》義大利文真人歌聲示範影片"
+        ag: "YouTube 真人教唱影片",
+        sg: "YouTube 純人聲示範影片",
+        sl: "YouTube 義大利文歌聲示範"
+    };
+    const biliUrls = {
+        ag: "https://search.bilibili.com/all?keyword=Amazing+Grace+歌唱教学",
+        sg: "https://search.bilibili.com/all?keyword=莎莉花园+歌唱教学",
+        sl: "https://search.bilibili.com/all?keyword=桑塔露琪亚+声乐教学"
+    };
+    const biliTexts = {
+        ag: "B站搜尋《Amazing Grace》教唱",
+        sg: "B站搜尋《莎莉花園》教唱",
+        sl: "B站搜尋《桑塔露琪亞》聲樂教學"
     };
     let activeLineIndex = -1;
     let isPracticeMode = false;
@@ -1069,6 +1079,8 @@
         updatePauseVal(3.5);
         document.getElementById("btn-video-link").href = videoUrls[currentSongId];
         document.getElementById("video-link-text").innerText = videoTexts[currentSongId];
+        document.getElementById("btn-bili-link").href = biliUrls[currentSongId];
+        document.getElementById("bili-link-text").innerText = biliTexts[currentSongId];
         
         // Handle audio events
         audioPlayer.addEventListener("ended", onAudioEnded);
