@@ -1154,9 +1154,11 @@
         document.getElementById("song-title").innerText = songs[songId].title;
         document.getElementById("song-desc").innerText = songs[songId].desc;
         
-        // Update video link and text
+        // Update video links and texts
         document.getElementById("btn-video-link").href = videoUrls[songId];
         document.getElementById("video-link-text").innerText = videoTexts[songId];
+        document.getElementById("btn-bili-link").href = biliUrls[songId];
+        document.getElementById("bili-link-text").innerText = biliTexts[songId];
         
         renderLyrics(songId);
     }
