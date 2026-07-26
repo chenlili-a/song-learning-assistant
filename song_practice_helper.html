@@ -1039,29 +1039,19 @@
         sl: "https://www.youtube.com/watch?v=X9LJaxL0URM"
     };
     const videoTexts = {
-        ag: "YouTube 真人教唱影片",
-        sg: "YouTube 純人聲示範影片",
-        sl: "YouTube 義大利文歌聲示範"
+        ag: "開啟《Amazing Grace》推薦教唱影片",
+        sg: "開啟《The Salley Gardens》純人聲示範影片",
+        sl: "開啟《Santa Lucia》義大利文歌聲示範"
     };
-    const biliUrls = {
-        ag: "https://search.bilibili.com/all?keyword=Amazing+Grace+歌唱教学",
-        sg: "https://search.bilibili.com/all?keyword=莎莉花园+歌唱教学",
-        sl: "https://search.bilibili.com/all?keyword=桑塔露琪亚+声乐教学"
+    const ytSearchUrls = {
+        ag: "https://www.youtube.com/results?search_query=Amazing+Grace+唱歌教學",
+        sg: "https://www.youtube.com/results?search_query=Down+by+the+Salley+Gardens+唱歌教學",
+        sl: "https://www.youtube.com/results?search_query=Santa+Lucia+聲樂教學"
     };
-    const biliTexts = {
-        ag: "B站搜尋《Amazing Grace》教唱",
-        sg: "B站搜尋《莎莉花園》教唱",
-        sl: "B站搜尋《桑塔露琪亞》聲樂教學"
-    };
-    const xiguaUrls = {
-        ag: "https://www.ixigua.com/search/Amazing%20Grace%20%E6%95%99%E5%94%B1/",
-        sg: "https://www.ixigua.com/search/%E8%8E%8E%E8%8E%89%E8%8A%B1%E5%9C%92%20%E6%AD%8C%E5%94%B1%E6%95%99%E5%AD%B8/",
-        sl: "https://www.ixigua.com/search/%E6%A1%91%E5%A1%94%E9%9C%B2%E7%90%AA%E4%BA%9E%20%E8%81%B2%E6%A8%82%E6%95%99%E5%AD%B8/"
-    };
-    const neteaseUrls = {
-        ag: "https://music.163.com/#/search/m/?s=Amazing%20Grace%20%E6%95%99%E5%94%B1",
-        sg: "https://music.163.com/#/search/m/?s=%E8%8E%8E%E8%8E%89%E8%8A%B1%E5%9C%92%20%E6%AD%8C%E5%94%B1%E6%95%99%E5%AD%B8",
-        sl: "https://music.163.com/#/search/m/?s=%E6%A1%91%E5%A1%94%E9%9C%B2%E7%90%AA%E4%BA%9E%20%E8%81%B2%E6%A8%82%E6%95%99%E5%AD%B8"
+    const ytSearchTexts = {
+        ag: "在 YouTube 搜尋《Amazing Grace》教唱",
+        sg: "在 YouTube 搜尋《莎莉花園》教唱",
+        sl: "在 YouTube 搜尋《桑塔露琪亞》教唱"
     };
     let activeLineIndex = -1;
     let isPracticeMode = false;
@@ -1090,10 +1080,8 @@
         updatePauseVal(3.5);
         document.getElementById("btn-video-link").href = videoUrls[currentSongId];
         document.getElementById("video-link-text").innerText = videoTexts[currentSongId];
-        document.getElementById("btn-bili-link").href = biliUrls[currentSongId];
-        document.getElementById("bili-link-text").innerText = biliTexts[currentSongId];
-        document.getElementById("btn-xigua-link").href = xiguaUrls[currentSongId];
-        document.getElementById("btn-netease-link").href = neteaseUrls[currentSongId];
+        document.getElementById("btn-yt-search-link").href = ytSearchUrls[currentSongId];
+        document.getElementById("yt-search-text").innerText = ytSearchTexts[currentSongId];
         
         // Handle audio events
         audioPlayer.addEventListener("ended", onAudioEnded);
