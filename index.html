@@ -1139,8 +1139,10 @@
     // Verified YouTube demonstration links. Keep these outside the song data so
     // changing an external video never changes lyrics, MIDI, tempo, or meter.
     const youtubeDemoUrls = Object.freeze({
-        ag: "https://www.youtube.com/watch?v=zrQPWsmkXYo",
-        sg: "https://www.youtube.com/watch?v=027ZJX5XVjs",
+        // Search pages are more reliable than individual videos when a video is
+        // region-restricted, age-restricted, removed, or unavailable to a user.
+        ag: "https://www.youtube.com/results?search_query=Amazing+Grace+singing+lesson",
+        sg: "https://www.youtube.com/results?search_query=Down+by+the+Salley+Gardens+singing",
         sl: "https://www.youtube.com/watch?v=X9LJaxL0URM"
     });
 
