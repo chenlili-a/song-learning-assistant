@@ -597,8 +597,7 @@
     本系統支援語音朗讀與 Web Audio 鋼琴旋律合成教學。您可以點擊任何單句進行單讀或聽取歌唱音高。
 </footer>
 
-<!-- Single HTML5 Audio Element for Pronunciation Playback -->
-<audio id="audio-player"></audio>
+<!-- SpeechSynthesis native engine used for pronunciation -->
 
 <script>
     // Song database (containing lyrics, translation, phonetic, tips, and MIDI notes)
@@ -607,6 +606,7 @@
             title: "Amazing Grace (奇異恩典)",
             desc: "詞：約翰·牛頓 (John Newton) | 英國經典聖詩，感人至深的救贖與恩典之歌。",
             tempo: 85,
+            lang: "en-US",
             videoUrl: "https://www.youtube.com/watch?v=78k5K4aY35o",
             videoText: "開啟《Amazing Grace》推薦教唱影片",
             ytSearchUrl: "https://www.youtube.com/results?search_query=Amazing+Grace+唱歌教學",
@@ -818,6 +818,7 @@
             title: "Down by the Salley Gardens (莎莉花園深處)",
             desc: "詞：威廉·巴特勒·葉慈 (W. B. Yeats) | 優美而帶有年少悔恨的愛爾蘭民謠經典。",
             tempo: 75,
+            lang: "en-US",
             videoUrl: "https://www.youtube.com/watch?v=kYv_3e8-D-Y",
             videoText: "開啟《The Salley Gardens》純人聲示範影片",
             ytSearchUrl: "https://www.youtube.com/results?search_query=Down+by+the+Salley+Gardens+唱歌教學",
@@ -933,6 +934,7 @@
             title: "Santa Lucia (桑塔露琪亞)",
             desc: "詞：特奧多羅·科特勞 (Teodoro Cottrau) | 經典拿坡里船歌，本網頁使用正宗義大利發音朗讀與旋律教唱。",
             tempo: 100,
+            lang: "it-IT",
             videoUrl: "https://www.youtube.com/watch?v=X9LJaxL0URM",
             videoText: "開啟《Santa Lucia》義大利文歌聲示範",
             ytSearchUrl: "https://www.youtube.com/results?search_query=Santa+Lucia+聲樂教學",
@@ -1054,7 +1056,6 @@
     let activeOscillators = [];
     let audioContext = null;
 
-    const audioPlayer = document.getElementById("audio-player");
     const playIcon = `
         <svg width="20" height="20" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z"/>
@@ -1074,15 +1075,6 @@
         document.getElementById("video-link-text").innerText = songs[currentSongId].videoText;
         document.getElementById("btn-yt-search-link").href = songs[currentSongId].ytSearchUrl;
         document.getElementById("yt-search-text").innerText = songs[currentSongId].ytSearchText;
-        
-        // Handle audio events
-        audioPlayer.addEventListener("ended", onAudioEnded);
-        audioPlayer.addEventListener("error", () => {
-            updateStatus("⚠️ 本機語音檔未找到，將改用旋律導唱模式。", false);
-            if (isPracticeMode && practiceModeType === "voice") {
-                stopPractice();
-            }
-        });
     });
 
     // Render lyrics cards
