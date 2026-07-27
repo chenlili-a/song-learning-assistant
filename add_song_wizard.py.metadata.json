@@ -1,5 +1,5 @@
 {
-  "summary": "An interactive Python wizard script (add_song_wizard.py) that helps users add new songs to their HTML learning assistant. It prompts for details, downloads pronunciation MP3s via Google TTS, and automatically inserts the song configuration into the HTML file.",
-  "updatedAt": "2026-07-26T16:30:53.251644500Z",
+  "summary": "Updated the Python song adding wizard (add_song_wizard.py) to remove the Google TTS downloader, as speech is now handled natively in the browser, making the script much faster, lighter, and dependency-free.",
+  "updatedAt": "2026-07-27T03:15:38.688879400Z",
   "userFacing": true
 }
