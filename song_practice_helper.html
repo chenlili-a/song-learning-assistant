@@ -1232,17 +1232,36 @@
         activeOscillators = [];
     }
 
+    // Browser native TTS reading
+    function speakLine(text, lang, onEndCallback) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang || "en-US";
+        utterance.rate = 0.8; // Slow reading rate
+        
+        utterance.onend = () => {
+            if (onEndCallback) onEndCallback();
+        };
+        utterance.onerror = (e) => {
+            console.error("SpeechSynthesis error:", e);
+            if (onEndCallback) onEndCallback();
+        };
+        
+        window.speechSynthesis.speak(utterance);
+    }
+
     // Play single line voice (manual click)
     function playSingleVoice(index, event) {
         event.stopPropagation();
         stopPractice();
         
         highlightCard(index, 'voice');
-        audioPlayer.src = songs[currentSongId].lines[index].audio;
-        audioPlayer.play().catch(err => {
-            updateStatus("⚠️ 本機語音檔加載出錯，請使用鋼琴旋律練習。", false);
-        });
         updateStatus(`正在朗讀第 ${index + 1} 句...`, true);
+        speakLine(songs[currentSongId].lines[index].text, songs[currentSongId].lang, () => {
+            if (!isPracticeMode) {
+                setTimeout(dehighlightAll, 300);
+            }
+        });
     }
 
     // Play single line melody (manual click)
@@ -1333,12 +1352,7 @@
             updateStatus(`正在播放第 ${activeLineIndex + 1} 句語音...`, true);
             document.getElementById("countdown-txt").innerText = "🔊 語音播放中...";
             
-            audioPlayer.src = songs[currentSongId].lines[activeLineIndex].audio;
-            audioPlayer.play().catch(err => {
-                // If audio fails, fallback to melody
-                updateStatus(`⚠️ 朗讀檔案未找到，跳過語音播放...`, false);
-                setTimeout(playPracticeMelodyPhase, 1000);
-            });
+            speakLine(songs[currentSongId].lines[activeLineIndex].text, songs[currentSongId].lang, onAudioEnded);
         } else {
             // Melody only mode
             playPracticeMelodyPhase();
@@ -1369,7 +1383,7 @@
 
     function stopPractice() {
         isPracticeMode = false;
-        audioPlayer.pause();
+        window.speechSynthesis.cancel();
         stopSynth();
         
         // Clear all timers
