@@ -1,4 +1,0 @@
-{
-  "summary": "A revised PowerShell script that creates a Desktop shortcut with an English filename (Song_Practice_Helper.lnk) to avoid Chinese character encoding issues in Windows CMD/PowerShell.",
-  "updatedAt": "2026-07-26T16:03:52.239703300Z"
-}

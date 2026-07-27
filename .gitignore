@@ -8,3 +8,9 @@
 !how_to_add_songs.md
 !deploy_to_github.ps1
 !.gitignore
+
+# Never publish local agent logs, scratch files, metadata, or generated WAVs.
+.system_generated/
+scratch/
+*.metadata.json
+*.wav

@@ -347,6 +347,114 @@
             background: var(--melody-color);
         }
 
+        /* Guided, line-by-line singing panel */
+        .coach-panel {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(129, 140, 248, 0.25);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .coach-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .coach-heading h2 {
+            font-size: 1.25rem;
+            color: #c7d2fe;
+        }
+
+        .coach-progress {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .coach-description {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .coach-lyrics {
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.5;
+            color: #fff;
+        }
+
+        .coach-translation {
+            color: #a5b4fc;
+            line-height: 1.6;
+            margin-top: 0.3rem;
+        }
+
+        .coach-phonetics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 0.6rem;
+        }
+
+        .coach-tip {
+            color: #6ee7b7;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.18);
+            border-radius: 10px;
+            padding: 0.6rem 0.8rem;
+            line-height: 1.6;
+            margin-top: 0.8rem;
+        }
+
+        .coach-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 1.1rem;
+        }
+
+        .coach-btn {
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border-radius: 10px;
+            padding: 0.65rem 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .coach-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .coach-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.45;
+        }
+
+        .coach-btn.primary,
+        .card-btn.btn-coach {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            border-color: #f87171;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(239, 68, 68, 0.2);
+        }
+
+        .coach-btn.primary:hover,
+        .card-btn.btn-coach:hover {
+            background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+        }
+
         .lyric-num {
             font-size: 1.2rem;
             font-weight: 700;
@@ -452,6 +560,10 @@
             background: rgba(16, 185, 129, 0.25);
         }
 
+        .lyric-card.repeating .card-btn.btn-coach {
+            box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.2), 0 4px 14px rgba(239, 68, 68, 0.35);
+        }
+
         /* Repeating / Count Down Overlay inside Cards */
         .repeat-overlay {
             position: absolute;
@@ -501,6 +613,60 @@
         /* SVG icons */
         svg {
             fill: currentColor;
+        }
+
+        @media (max-width: 700px) {
+            .app-container {
+                padding: 1.3rem;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+                gap: 0.6rem;
+            }
+
+            .tab-btn {
+                flex: 1 1 100%;
+                padding: 0.7rem 1rem;
+            }
+
+            .lyric-card {
+                align-items: flex-start;
+                flex-wrap: wrap;
+                padding: 1rem;
+            }
+
+            .lyric-body {
+                min-width: calc(100% - 45px);
+            }
+
+            .card-controls {
+                flex-direction: row;
+                width: 100%;
+                min-width: 0;
+            }
+
+            .card-btn {
+                flex: 1;
+                padding: 0.55rem 0.45rem;
+            }
+
+            .repeat-overlay {
+                right: 1rem;
+                top: 1rem;
+                transform: none;
+            }
+
+            .coach-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0.25rem;
+            }
         }
     </style>
 </head>
@@ -570,14 +736,14 @@
         </div>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 0.5rem;">
             <!-- YouTube Recommended Button -->
-            <a id="btn-video-link" href="" target="_blank" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <a id="btn-video-link" href="" target="_blank" rel="noopener noreferrer" aria-label="開啟目前歌曲的 YouTube 示範影片" style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(239, 68, 68, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
                 <svg width="18" height="18" viewBox="0 0 24 24" style="fill: currentColor; transform: translateY(-1px);">
                     <path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.524 3.545 12 3.545 12 3.545s-7.525 0-9.387.51A3.003 3.003 0 0 0 .502 6.163C0 8.04 0 12 0 12s0 3.96.502 5.837a3.003 3.003 0 0 0 2.11 2.108c1.862.51 9.387.51 9.387.51s7.525 0 9.387-.51a3.002 3.002 0 0 0 2.11-2.108c.502-1.877.502-5.837.502-5.837s0-3.96-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                 </svg>
                 <span id="video-link-text">開啟推薦教唱影片</span>
             </a>
             <!-- YouTube Search Button -->
-            <a id="btn-yt-search-link" href="" target="_blank" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <a id="btn-yt-search-link" href="" target="_blank" rel="noopener noreferrer" aria-label="在 YouTube 搜尋目前歌曲的其他版本" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: #fff; text-decoration: none; padding: 0.8rem 1.6rem; border-radius: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.25); transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem;">
                 <svg width="18" height="18" viewBox="0 0 24 24" style="fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; transform: translateY(-1px);">
                     <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
@@ -586,6 +752,24 @@
         </div>
     </div>
     </div>
+
+    <!-- Guided singing: one lyric segment at a time -->
+    <section class="coach-panel" id="coach-panel" aria-labelledby="coach-title">
+        <div class="coach-heading">
+            <h2 id="coach-title">🎤 逐段帶歌詞教唱</h2>
+            <div class="coach-progress" id="coach-progress" aria-live="polite"></div>
+        </div>
+        <p class="coach-description">每次練一段：先聽歌詞發音，再聽鋼琴旋律，最後跟著畫面上的歌詞唱。也可以直接在下方歌詞卡按「逐段教唱」。</p>
+        <div class="coach-lyrics" id="coach-lyrics"></div>
+        <div class="coach-translation" id="coach-translation"></div>
+        <div class="coach-phonetics" id="coach-phonetics"></div>
+        <div class="coach-tip" id="coach-tip"></div>
+        <div class="coach-actions">
+            <button class="coach-btn" id="coach-prev" type="button">← 上一段</button>
+            <button class="coach-btn primary" id="coach-play" type="button">▶ 先聽這段，再跟唱</button>
+            <button class="coach-btn" id="coach-next" type="button">下一段 →</button>
+        </div>
+    </section>
 
     <!-- Lyrics Sheet -->
     <div class="lyrics-container" id="lyrics-sheet">
@@ -952,8 +1136,52 @@
         }
     };
 
+    // Verified YouTube demonstration links. Keep these outside the song data so
+    // changing an external video never changes lyrics, MIDI, tempo, or meter.
+    const youtubeDemoUrls = Object.freeze({
+        ag: "https://www.youtube.com/watch?v=zrQPWsmkXYo",
+        sg: "https://www.youtube.com/watch?v=027ZJX5XVjs",
+        sl: "https://www.youtube.com/watch?v=X9LJaxL0URM"
+    });
+
+    const songLanguages = Object.freeze({
+        ag: "en-US",
+        sg: "en-IE",
+        sl: "it-IT"
+    });
+
+    const songCoachTips = Object.freeze({
+        ag: "先慢慢讀清楚英文子音，再把句尾母音拉長，保持柔和連貫。",
+        sg: "用 4/4 拍穩定換氣；先聽完整旋律，再在句尾輕輕收音。",
+        sl: "用 3/4 船歌律動輕輕搖擺，保持義大利母音連貫，不要逐字切斷。"
+    });
+
+    function isSafeYoutubeUrl(value) {
+        try {
+            const url = new URL(value);
+            const host = url.hostname.toLowerCase();
+            return url.protocol === "https:" && (host === "youtube.com" || host.endsWith(".youtube.com") || host === "youtu.be");
+        } catch (error) {
+            return false;
+        }
+    }
+
+    function getYoutubeDemoUrl(songId) {
+        const candidate = youtubeDemoUrls[songId] || songs[songId].videoUrl;
+        return isSafeYoutubeUrl(candidate) ? candidate : songs[songId].ytSearchUrl;
+    }
+
+    function setYoutubeLink(link, value, fallback) {
+        const safeValue = isSafeYoutubeUrl(value) ? value : fallback;
+        link.href = safeValue;
+        link.rel = "noopener noreferrer";
+    }
+
     let currentSongId = "ag";
     let activeLineIndex = -1;
+    let coachIndex = 0;
+    let coachTimer = null;
+    let isCoachPlaying = false;
     let isPracticeMode = false;
     let practiceModeType = "voice"; // "voice", "melody", "both"
     let pauseDuration = 3.5; // seconds
@@ -976,24 +1204,29 @@
     // Initialize page
     window.addEventListener("DOMContentLoaded", () => {
         renderLyrics(currentSongId);
+        renderCoach(currentSongId, 0);
         updatePauseVal(3.5);
+
+        document.getElementById("coach-prev").addEventListener("click", () => moveCoach(-1));
+        document.getElementById("coach-play").addEventListener("click", () => playCoachLine());
+        document.getElementById("coach-next").addEventListener("click", () => moveCoach(1));
+
         const videoLink = document.getElementById("btn-video-link");
         const videoText = document.getElementById("video-link-text");
         const ytLink = document.getElementById("btn-yt-search-link");
         const ytText = document.getElementById("yt-search-text");
 
-        videoLink.href = songs[currentSongId].videoUrl;
+        setYoutubeLink(videoLink, getYoutubeDemoUrl(currentSongId), songs[currentSongId].ytSearchUrl);
         videoText.innerText = songs[currentSongId].videoText;
 
-        const query = encodeURIComponent(songs[currentSongId].title + " 歌唱教學");
-        ytLink.href = `https://www.youtube.com/results?search_query=${query}`;
+        setYoutubeLink(ytLink, songs[currentSongId].ytSearchUrl, "https://www.youtube.com/");
         ytText.innerText = `在 YouTube 搜尋更多《${songs[currentSongId].title.split(" (")[0]}》版本`;
     });
 
     // Render lyrics cards
     function renderLyrics(songId) {
         const sheet = document.getElementById("lyrics-sheet");
-        sheet.innerHTML = "";
+        sheet.replaceChildren();
         
         const lines = songs[songId].lines;
         lines.forEach((line, index) => {
@@ -1001,38 +1234,130 @@
             card.className = "lyric-card";
             card.id = `lyric-${index}`;
 
-            card.innerHTML = `
-                <div class="lyric-num">${index + 1}</div>
-                <div class="lyric-body">
-                    <div class="lyric-original">${line.text}</div>
-                    <div class="lyric-translation">${line.translation}</div>
-                    <div class="lyric-pho">
-                        <span class="pho-ipa">${line.ipa}</span>
-                        <span class="pho-pinyin">${line.pinyin}</span>
-                    </div>
-                    <div class="lyric-tips">${line.tips}</div>
-                </div>
-                <div class="card-controls">
-                    <button class="card-btn btn-voice" onclick="playSingleVoice(${index}, event)">
-                        <svg width="14" height="14" viewBox="0 0 24 24">
-                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
-                        </svg>
-                        🔊 聽發音
-                    </button>
-                    <button class="card-btn btn-melody" onclick="playSingleMelody(${index}, event)">
-                        <svg width="14" height="14" viewBox="0 0 24 24">
-                            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                        </svg>
-                        🎹 聽旋律
-                    </button>
-                </div>
-                <!-- Repeating Indicator -->
-                <div class="repeat-overlay">
-                    <div class="pulse-dot"></div>
-                    <span>跟唱中...</span>
-                </div>
-            `;
+            const lineNumber = document.createElement("div");
+            lineNumber.className = "lyric-num";
+            lineNumber.textContent = String(index + 1);
+
+            const body = document.createElement("div");
+            body.className = "lyric-body";
+
+            const original = document.createElement("div");
+            original.className = "lyric-original";
+            original.textContent = line.text || "";
+
+            const translation = document.createElement("div");
+            translation.className = "lyric-translation";
+            translation.textContent = line.translation || "";
+
+            const phonetics = document.createElement("div");
+            phonetics.className = "lyric-pho";
+            const ipa = document.createElement("span");
+            ipa.className = "pho-ipa";
+            ipa.textContent = line.ipa || "";
+            const pinyin = document.createElement("span");
+            pinyin.className = "pho-pinyin";
+            pinyin.textContent = line.pinyin || "";
+            phonetics.append(ipa, pinyin);
+
+            const tips = document.createElement("div");
+            tips.className = "lyric-tips";
+            tips.textContent = getCoachTip(songId, index, line);
+            body.append(original, translation, phonetics, tips);
+
+            const controls = document.createElement("div");
+            controls.className = "card-controls";
+            controls.append(
+                createCardButton("🔊 聽發音", "btn-voice", (event) => playSingleVoice(index, event)),
+                createCardButton("🎹 聽旋律", "btn-melody", (event) => playSingleMelody(index, event)),
+                createCardButton("🎤 逐段教唱", "btn-coach", (event) => playSingleCoach(index, event))
+            );
+
+            const repeatOverlay = document.createElement("div");
+            repeatOverlay.className = "repeat-overlay";
+            const pulseDot = document.createElement("div");
+            pulseDot.className = "pulse-dot";
+            const repeatText = document.createElement("span");
+            repeatText.textContent = "跟唱中...";
+            repeatOverlay.append(pulseDot, repeatText);
+
+            card.append(lineNumber, body, controls, repeatOverlay);
             sheet.appendChild(card);
+        });
+    }
+
+    function createCardButton(label, className, handler) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `card-btn ${className}`;
+        button.textContent = label;
+        button.addEventListener("click", handler);
+        return button;
+    }
+
+    function getCoachTip(songId, index, line) {
+        const storedTip = typeof line.tips === "string" ? line.tips.replace(/<[^>]*>/g, "").trim() : "";
+        return storedTip || `第 ${index + 1} 段教唱：${songCoachTips[songId] || "先聽發音，再聽旋律，最後跟著歌詞唱一次。"}`;
+    }
+
+    function renderCoach(songId, index) {
+        const lines = songs[songId].lines;
+        coachIndex = Math.min(Math.max(index, 0), lines.length - 1);
+        const line = lines[coachIndex];
+
+        document.getElementById("coach-progress").textContent = `第 ${coachIndex + 1} / ${lines.length} 段`;
+        document.getElementById("coach-lyrics").textContent = line.text || "";
+        document.getElementById("coach-translation").textContent = line.translation || "";
+
+        const phonetics = document.getElementById("coach-phonetics");
+        phonetics.replaceChildren();
+        const ipa = document.createElement("span");
+        ipa.textContent = line.ipa || "";
+        const pinyin = document.createElement("span");
+        pinyin.textContent = line.pinyin || "";
+        phonetics.append(ipa, pinyin);
+
+        document.getElementById("coach-tip").textContent = getCoachTip(songId, coachIndex, line);
+        document.getElementById("coach-prev").disabled = coachIndex === 0;
+        document.getElementById("coach-next").disabled = coachIndex === lines.length - 1;
+    }
+
+    function moveCoach(offset) {
+        stopPractice();
+        renderCoach(currentSongId, coachIndex + offset);
+    }
+
+    function playSingleCoach(index, event) {
+        event.stopPropagation();
+        coachIndex = index;
+        renderCoach(currentSongId, index);
+        playCoachLine();
+    }
+
+    function playCoachLine() {
+        stopPractice();
+        isCoachPlaying = true;
+        document.getElementById("status-bar").style.display = "flex";
+        const line = songs[currentSongId].lines[coachIndex];
+
+        highlightCard(coachIndex, "voice");
+        updateStatus(`第 ${coachIndex + 1} 段：先聽歌詞發音...`, true);
+        speakLine(line.text, songLanguages[currentSongId], () => {
+            if (!isCoachPlaying) return;
+            highlightCard(coachIndex, "melody");
+            updateStatus(`第 ${coachIndex + 1} 段：聽旋律，準備跟唱...`, true);
+            playMelodyNotes(line.notes, songs[currentSongId].tempo, () => {
+                if (!isCoachPlaying) return;
+                dehighlightAll();
+                const card = document.getElementById(`lyric-${coachIndex}`);
+                if (card) card.classList.add("repeating");
+                updateStatus(`第 ${coachIndex + 1} 段：請跟著歌詞唱一次！`, true);
+                document.getElementById("countdown-txt").innerText = "🎤 跟唱中...";
+                coachTimer = setTimeout(() => {
+                    if (card) card.classList.remove("repeating");
+                    isCoachPlaying = false;
+                    updateStatus(`第 ${coachIndex + 1} 段完成，可以按「下一段」。`, false);
+                }, pauseDuration * 1000);
+            });
         });
     }
 
@@ -1060,14 +1385,14 @@
         const ytLink = document.getElementById("btn-yt-search-link");
         const ytText = document.getElementById("yt-search-text");
 
-        videoLink.href = songs[songId].videoUrl;
+        setYoutubeLink(videoLink, getYoutubeDemoUrl(songId), songs[songId].ytSearchUrl);
         videoText.innerText = songs[songId].videoText;
 
-        const query = encodeURIComponent(songs[songId].title + " 歌唱教學");
-        ytLink.href = `https://www.youtube.com/results?search_query=${query}`;
+        setYoutubeLink(ytLink, songs[songId].ytSearchUrl, "https://www.youtube.com/");
         ytText.innerText = `在 YouTube 搜尋更多《${songs[songId].title.split(" (")[0]}》版本`;
         
         renderLyrics(songId);
+        renderCoach(songId, 0);
     }
 
     // Practice mode selection
@@ -1184,7 +1509,7 @@
         
         highlightCard(index, 'voice');
         updateStatus(`正在朗讀第 ${index + 1} 句...`, true);
-        speakLine(songs[currentSongId].lines[index].text, songs[currentSongId].lang, () => {
+        speakLine(songs[currentSongId].lines[index].text, songLanguages[currentSongId], () => {
             if (!isPracticeMode) {
                 setTimeout(dehighlightAll, 300);
             }
@@ -1279,7 +1604,7 @@
             updateStatus(`正在播放第 ${activeLineIndex + 1} 句語音...`, true);
             document.getElementById("countdown-txt").innerText = "🔊 語音播放中...";
             
-            speakLine(songs[currentSongId].lines[activeLineIndex].text, songs[currentSongId].lang, onAudioEnded);
+        speakLine(songs[currentSongId].lines[activeLineIndex].text, songLanguages[currentSongId], onAudioEnded);
         } else {
             // Melody only mode
             playPracticeMelodyPhase();
@@ -1310,6 +1635,8 @@
 
     function stopPractice() {
         isPracticeMode = false;
+        isCoachPlaying = false;
+        clearTimeout(coachTimer);
         window.speechSynthesis.cancel();
         stopSynth();
         

@@ -12,14 +12,19 @@ $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
 $htmlPath = Join-Path $scriptDir "song_practice_helper.html"
 $indexPath = Join-Path $scriptDir "index.html"
 
-# 1. Copy song_practice_helper.html to index.html for GitHub Pages root resolution
-if (Test-Path $htmlPath) {
-    Copy-Item $htmlPath $indexPath -Force
-    Write-Output "✓ 已生成適合部署的網頁主檔 (index.html)"
+# 1. index.html is the canonical GitHub Pages entry point.
+# Keep the legacy copy as a reference, but never overwrite index.html from it.
+if (!(Test-Path $indexPath)) {
+    if (Test-Path $htmlPath) {
+        Copy-Item $htmlPath $indexPath
+        Write-Output "✓ 已從舊版檔案建立 index.html"
+    } else {
+        Write-Output "❌ 找不到 index.html 或舊版網頁檔案：$htmlPath"
+        Read-Host "請按 Enter 鍵關閉..."
+        exit
+    }
 } else {
-    Write-Output "❌ 找不到網頁檔案：$htmlPath"
-    Read-Host "請按 Enter 鍵關閉..."
-    exit
+    Write-Output "✓ 使用現有 index.html（不覆蓋目前內容）"
 }
 
 # 2. Check if git is initialized
@@ -30,6 +35,13 @@ if (!(Test-Path (Join-Path $scriptDir ".git"))) {
     git branch -M main
 } else {
     Set-Location $scriptDir
+}
+
+# Never publish directly to main. Create/use a feature branch and open a PR.
+$currentBranch = (git branch --show-current).Trim()
+if (!$currentBranch -or $currentBranch -eq "main" -or $currentBranch -eq "master") {
+    Write-Output "❌ 為避免直接修改主分支，請先切換到 agent/* 功能分支，再執行部署。"
+    exit 1
 }
 
 # 3. Add and commit files
@@ -61,9 +73,9 @@ if (!$remote) {
     Write-Output "✓ 已偵測到已連結的遠端倉庫: $remote"
 }
 
-# 5. Push to GitHub
-Write-Output "`n正在將網頁上傳至 GitHub (可能需要您登入帳號授權)..."
-git push -u origin main -f
+# 5. Push the current feature branch without force-pushing
+Write-Output "`n正在將網頁上傳至 GitHub 分支 $currentBranch (可能需要您登入帳號授權)..."
+git push -u origin $currentBranch
 
 if ($LASTEXITCODE -eq 0) {
     Write-Output "`n=================================================="

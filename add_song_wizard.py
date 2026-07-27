@@ -3,6 +3,19 @@ import os
 import re
 import urllib.parse
 import json
+import html
+
+
+def is_safe_youtube_url(value):
+    """Allow only HTTPS links that point to YouTube."""
+    try:
+        parsed = urllib.parse.urlparse(value)
+        host = (parsed.hostname or "").lower()
+        return parsed.scheme == "https" and (
+            host == "youtube.com" or host.endswith(".youtube.com") or host == "youtu.be"
+        )
+    except ValueError:
+        return False
 
 def main():
     print("=========================================")
@@ -37,6 +50,9 @@ def main():
     video_url = input("6. 請輸入 YouTube 真人教唱/示範影片網址 (可留空，若留空將預設為 YouTube 搜尋網址): ").strip()
     if not video_url:
         video_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(title)}+唱歌教學"
+    elif not is_safe_youtube_url(video_url):
+        print("❌ 示範影片網址必須是 HTTPS 的 YouTube 或 youtu.be 網址！")
+        return
         
     video_text = f"開啟《{title.split('(')[0].strip()}》真人示範影片"
     yt_search_url = f"https://www.youtube.com/results?search_query={urllib.parse.quote(title.split('(')[0].strip())}+唱歌教學"
@@ -64,7 +80,7 @@ def main():
             "translation": translation,
             "ipa": ipa,
             "pinyin": pinyin,
-            "tips": f"<b>教唱：</b>{tips}" if tips else "",
+            "tips": f"教唱：{tips}" if tips else "",
             "notes": [] # MIDI notes can be added manually or edited in HTML later
         })
         line_idx += 1
@@ -122,14 +138,15 @@ def main():
             html_content = f.read()
             
         short_title = title.split("(")[0].strip()
+        safe_short_title = html.escape(short_title, quote=False)
         tab_target = f'<button class="tab-btn" onclick="switchSong(\'sl\', this)">Santa Lucia</button>'
-        tab_replacement = tab_target + f'\n            <button class="tab-btn" onclick="switchSong(\'{song_id}\', this)">{short_title}</button>'
+        tab_replacement = tab_target + f'\n            <button class="tab-btn" onclick="switchSong(\'{song_id}\', this)">{safe_short_title}</button>'
         
         if tab_target in html_content:
             html_content = html_content.replace(tab_target, tab_replacement)
         else:
             tab_target_rn = f'<button class="tab-btn" onclick="switchSong(\'sl\', this)">Santa Lucia</button>'
-            tab_replacement_rn = tab_target_rn + f'\r\n            <button class="tab-btn" onclick="switchSong(\'{song_id}\', this)">{short_title}</button>'
+            tab_replacement_rn = tab_target_rn + f'\r\n            <button class="tab-btn" onclick="switchSong(\'{song_id}\', this)">{safe_short_title}</button>'
             html_content = html_content.replace(tab_target_rn, tab_replacement_rn)
             
         with open(html_path, "w", encoding="utf-8") as f:

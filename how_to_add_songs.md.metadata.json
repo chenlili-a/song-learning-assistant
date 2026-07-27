@@ -1,5 +1,0 @@
-{
-  "summary": "Updated how_to_add_songs.md to guide the user on the new local file-free SpeechSynthesis architecture, explain how they can ask the AI directly to add songs without typing anything, and how to use the local script.",
-  "updatedAt": "2026-07-27T03:15:43.571025200Z",
-  "userFacing": true
-}

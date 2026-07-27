@@ -41,8 +41,8 @@
 
 整個學習助手現在是**一個單一的 HTML 檔案**，不需要伴隨任何 `audio/` 音檔資料夾：
 
-*   **[song_practice_helper.html](file:///C:/Users/Chen/.gemini/antigravity/brain/ad2b16ce-4b04-4380-84e8-bf394ff8a5e4/song_practice_helper.html)**：主網頁檔案。
-*   **[add_song_wizard.py](file:///C:/Users/Chen/.gemini/antigravity/brain/ad2b16ce-4b04-4380-84e8-bf394ff8a5e4/add_song_wizard.py)**：本地新增腳本。
+*   **[index.html](./index.html)**：主網頁檔案。
+*   **[add_song_wizard.py](./add_song_wizard.py)**：本地新增腳本。
 
 ### 網頁中的資料結構：
 在網頁內底部的 `songs` 物件中，各歌曲現在多了一個 `lang` 屬性，用來指定瀏覽器朗讀的語言：

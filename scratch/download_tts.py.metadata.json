@@ -1,4 +1,0 @@
-{
-  "summary": "A fixed version of download_tts.py that avoids Unicode encoding print errors on Windows cmd by stripping non-ASCII characters in console messages, and skips already-downloaded files.",
-  "updatedAt": "2026-07-26T15:31:41.056218500Z"
-}
