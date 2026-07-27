@@ -23,11 +23,11 @@ def main():
     print("=========================================")
     
     script_dir = os.path.dirname(os.path.abspath(__file__))
-    html_path = os.path.join(script_dir, "song_practice_helper.html")
+    html_path = os.path.join(script_dir, "index.html")
     
     if not os.path.exists(html_path):
         print(f"⚠️ 找不到網頁檔案：{html_path}")
-        print("請確保此腳本與 song_practice_helper.html 放置在同一個資料夾中！")
+        print("請確保此腳本與 index.html 放置在同一個資料夾中！")
         input("按任意鍵結束...")
         return
 

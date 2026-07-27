@@ -9,23 +9,15 @@ Write-Output "       雙語歌唱練習助手 - 一鍵發佈網站精靈        
 Write-Output "=================================================="
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Definition
-$htmlPath = Join-Path $scriptDir "song_practice_helper.html"
 $indexPath = Join-Path $scriptDir "index.html"
 
 # 1. index.html is the canonical GitHub Pages entry point.
-# Keep the legacy copy as a reference, but never overwrite index.html from it.
 if (!(Test-Path $indexPath)) {
-    if (Test-Path $htmlPath) {
-        Copy-Item $htmlPath $indexPath
-        Write-Output "✓ 已從舊版檔案建立 index.html"
-    } else {
-        Write-Output "❌ 找不到 index.html 或舊版網頁檔案：$htmlPath"
-        Read-Host "請按 Enter 鍵關閉..."
-        exit
-    }
-} else {
-    Write-Output "✓ 使用現有 index.html（不覆蓋目前內容）"
+    Write-Output "❌ 找不到 index.html，部署取消。"
+    Read-Host "請按 Enter 鍵關閉..."
+    exit
 }
+Write-Output "✓ 使用現有 index.html（不覆蓋目前內容）"
 
 # 2. Check if git is initialized
 if (!(Test-Path (Join-Path $scriptDir ".git"))) {
@@ -46,7 +38,7 @@ if (!$currentBranch -or $currentBranch -eq "main" -or $currentBranch -eq "master
 
 # 3. Add and commit files
 Write-Output "正在將網頁檔案加入暫存區..."
-git add index.html song_practice_helper.html add_song_wizard.py how_to_add_songs.md .gitignore deploy_to_github.ps1
+git add index.html add_song_wizard.py how_to_add_songs.md .gitignore deploy_to_github.ps1
 git commit -m "Deploy song practice assistant to GitHub Pages"
 
 # 4. Check remote origin

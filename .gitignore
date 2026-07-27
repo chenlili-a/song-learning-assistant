@@ -3,7 +3,6 @@
 
 # Whitelist our web app files and wizard scripts
 !index.html
-!song_practice_helper.html
 !add_song_wizard.py
 !how_to_add_songs.md
 !deploy_to_github.ps1
