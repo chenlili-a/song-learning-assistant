@@ -1167,14 +1167,44 @@
     }
 
     function getYoutubeDemoUrl(songId) {
-        const candidate = youtubeDemoUrls[songId] || songs[songId].videoUrl;
-        return isSafeYoutubeUrl(candidate) ? candidate : songs[songId].ytSearchUrl;
+        const song = getSong(songId);
+        const candidate = youtubeDemoUrls[songId] || song.videoUrl;
+        return isSafeYoutubeUrl(candidate) ? candidate : song.ytSearchUrl;
     }
 
     function setYoutubeLink(link, value, fallback) {
         const safeValue = isSafeYoutubeUrl(value) ? value : fallback;
         link.href = safeValue;
         link.rel = "noopener noreferrer";
+    }
+
+    function getSong(songId) {
+        return songs[songId] || songs.ag;
+    }
+
+    function getSongDescription(songId) {
+        const description = getSong(songId).desc;
+        return typeof description === "string" && description.trim()
+            ? description
+            : "這首歌曲的介紹尚未提供。";
+    }
+
+    function getSongShortTitle(songId) {
+        return getSong(songId).title.split(" (")[0];
+    }
+
+    function updateSongMediaLinks(songId) {
+        const song = getSong(songId);
+        const videoLink = document.getElementById("btn-video-link");
+        const videoText = document.getElementById("video-link-text");
+        const ytLink = document.getElementById("btn-yt-search-link");
+        const ytText = document.getElementById("yt-search-text");
+        const searchFallback = "https://www.youtube.com/";
+
+        setYoutubeLink(videoLink, getYoutubeDemoUrl(songId), song.ytSearchUrl || searchFallback);
+        videoText.textContent = song.videoText || `開啟《${getSongShortTitle(songId)}》示範影片`;
+        setYoutubeLink(ytLink, song.ytSearchUrl, searchFallback);
+        ytText.textContent = song.ytSearchText || `在 YouTube 搜尋更多《${getSongShortTitle(songId)}》版本`;
     }
 
     let currentSongId = "ag";
@@ -1211,16 +1241,9 @@
         document.getElementById("coach-play").addEventListener("click", () => playCoachLine());
         document.getElementById("coach-next").addEventListener("click", () => moveCoach(1));
 
-        const videoLink = document.getElementById("btn-video-link");
-        const videoText = document.getElementById("video-link-text");
-        const ytLink = document.getElementById("btn-yt-search-link");
-        const ytText = document.getElementById("yt-search-text");
-
-        setYoutubeLink(videoLink, getYoutubeDemoUrl(currentSongId), songs[currentSongId].ytSearchUrl);
-        videoText.innerText = songs[currentSongId].videoText;
-
-        setYoutubeLink(ytLink, songs[currentSongId].ytSearchUrl, "https://www.youtube.com/");
-        ytText.innerText = `在 YouTube 搜尋更多《${songs[currentSongId].title.split(" (")[0]}》版本`;
+        document.getElementById("song-title").textContent = getSong(currentSongId).title;
+        document.getElementById("song-desc").textContent = getSongDescription(currentSongId);
+        updateSongMediaLinks(currentSongId);
     });
 
     // Render lyrics cards
@@ -1363,6 +1386,7 @@
 
     // Switch songs
     function switchSong(songId, btn) {
+        if (!songs[songId]) return;
         if (songId === currentSongId) return;
         
         stopPractice();
@@ -1375,21 +1399,10 @@
             btn.classList.add("active");
         }
         
-        // Update header details
-        document.getElementById("song-title").innerText = songs[songId].title;
-        document.getElementById("song-desc").innerText = songs[songId].desc;
-        
-        // Update video links and texts with robust dynamic URL encoding to prevent browser link corruption
-        const videoLink = document.getElementById("btn-video-link");
-        const videoText = document.getElementById("video-link-text");
-        const ytLink = document.getElementById("btn-yt-search-link");
-        const ytText = document.getElementById("yt-search-text");
-
-        setYoutubeLink(videoLink, getYoutubeDemoUrl(songId), songs[songId].ytSearchUrl);
-        videoText.innerText = songs[songId].videoText;
-
-        setYoutubeLink(ytLink, songs[songId].ytSearchUrl, "https://www.youtube.com/");
-        ytText.innerText = `在 YouTube 搜尋更多《${songs[songId].title.split(" (")[0]}》版本`;
+        // Update header and external media links together so no field is left undefined.
+        document.getElementById("song-title").textContent = getSong(songId).title;
+        document.getElementById("song-desc").textContent = getSongDescription(songId);
+        updateSongMediaLinks(songId);
         
         renderLyrics(songId);
         renderCoach(songId, 0);
