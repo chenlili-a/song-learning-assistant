@@ -595,7 +595,7 @@
 
 <footer>
     本系統支援語音朗讀與 Web Audio 鋼琴旋律合成教學。您可以點擊任何單句進行單讀或聽取歌唱音高。<br>
-    <span style="color: #6366f1; font-weight: bold; margin-top: 5px; display: inline-block;">【系統版本：V13 - 正宗愛爾蘭與義大利名曲旋律修復版】</span>
+    <span style="color: #6366f1; font-weight: bold; margin-top: 5px; display: inline-block;">【系統版本：V14 - 徹底修復 YouTube 連結與獨立旋律版】</span>
 </footer>
 
 <!-- SpeechSynthesis native engine used for pronunciation -->
@@ -607,6 +607,10 @@
             title: "Amazing Grace (奇異恩典)",
             desc: "詞：約翰·牛頓 (John Newton) | 英國經典聖詩，感人至深的救贖與恩典之歌。",
             tempo: 85,
+            videoUrl: "https://www.youtube.com/watch?v=78k5K4aY35o",
+            videoText: "開啟《Amazing Grace》示範影片",
+            ytSearchUrl: "https://www.youtube.com/results?search_query=Amazing+Grace+歌唱教學",
+            ytSearchText: "在 YouTube 搜尋更多《Amazing Grace》版本",
             lines: [
                 { 
                     text: "Amazing grace! How sweet the sound", 
@@ -798,6 +802,10 @@
             title: "Down by the Salley Gardens (莎莉花園深處)",
             desc: "詞：威廉·巴特勒·葉慈 (W. B. Yeats) | 優美而帶有年少悔恨的愛爾蘭民謠經典。",
             tempo: 75,
+            videoUrl: "https://www.youtube.com/watch?v=kYv_3e8-D-Y",
+            videoText: "開啟《The Salley Gardens》示範影片",
+            ytSearchUrl: "https://www.youtube.com/results?search_query=Down+by+the+Salley+Gardens+歌唱教學",
+            ytSearchText: "在 YouTube 搜尋更多《The Salley Gardens》版本",
             lines: [
                 { 
                     text: "Down by the salley gardens my love and I did meet;", 
@@ -869,6 +877,10 @@
             title: "Santa Lucia (桑塔露琪亞)",
             desc: "詞：特奧多羅·科特勞 (Teodoro Cottrau) | 經典拿坡里船歌，本網頁使用正宗義大利發音朗讀與旋律教唱。",
             tempo: 100,
+            videoUrl: "https://www.youtube.com/watch?v=X9LJaxL0URM",
+            videoText: "開啟《Santa Lucia》示範影片",
+            ytSearchUrl: "https://www.youtube.com/results?search_query=Santa+Lucia+歌唱教學",
+            ytSearchText: "在 YouTube 搜尋更多《Santa Lucia》版本",
             lines: [
                 { 
                     text: "Sul mare luccica l’astro d’argento.", 
@@ -1166,7 +1178,7 @@
         stopPractice();
         
         highlightCard(index, 'melody');
-        updateStatus(`正在播放第 ${index + 1} 句鋼琴旋律...`, true);
+        updateStatus(`正在播放第 ${index + 1} 句鋼琴旋律 (${songs[currentSongId].title})...`, true);
         
         const line = songs[currentSongId].lines[index];
         playMelodyNotes(line.notes, songs[currentSongId].tempo, () => {
