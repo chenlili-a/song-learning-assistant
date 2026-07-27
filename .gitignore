@@ -1,6 +1,10 @@
-*.db
-*.db-journal
-.system_generated/tasks/
-.system_generated/terminals/
-.tempmediaStorage/
-browser/
+# Ignore everything by default
+*
+
+# Whitelist our web app files and wizard scripts
+!index.html
+!song_practice_helper.html
+!add_song_wizard.py
+!how_to_add_songs.md
+!deploy_to_github.ps1
+!.gitignore
