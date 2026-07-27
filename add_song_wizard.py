@@ -122,14 +122,14 @@ def main():
             html_content = f.read()
             
         short_title = title.split("(")[0].strip()
-        tab_target = f'<button class="tab-btn" onclick="switchSong(\'sl\')">Santa Lucia</button>'
-        tab_replacement = tab_target + f'\n            <button class="tab-btn" onclick="switchSong(\'{song_id}\')">{short_title}</button>'
+        tab_target = f'<button class="tab-btn" onclick="switchSong(\'sl\', this)">Santa Lucia</button>'
+        tab_replacement = tab_target + f'\n            <button class="tab-btn" onclick="switchSong(\'{song_id}\', this)">{short_title}</button>'
         
         if tab_target in html_content:
             html_content = html_content.replace(tab_target, tab_replacement)
         else:
-            tab_target_rn = f'<button class="tab-btn" onclick="switchSong(\'sl\')">Santa Lucia</button>'
-            tab_replacement_rn = tab_target_rn + f'\r\n            <button class="tab-btn" onclick="switchSong(\'{song_id}\')">{short_title}</button>'
+            tab_target_rn = f'<button class="tab-btn" onclick="switchSong(\'sl\', this)">Santa Lucia</button>'
+            tab_replacement_rn = tab_target_rn + f'\r\n            <button class="tab-btn" onclick="switchSong(\'{song_id}\', this)">{short_title}</button>'
             html_content = html_content.replace(tab_target_rn, tab_replacement_rn)
             
         with open(html_path, "w", encoding="utf-8") as f:
